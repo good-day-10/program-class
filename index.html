@@ -595,10 +595,11 @@
             }, 3000);
         }
 
-        // 初始化頁面渲染
-        window.addEventListener('DOMContentLoaded', () => {
-            renderProjects();
-        });
+        // 初始化頁面渲染：立即執行 renderProjects 以防止 DOMContentLoaded 事件漏抓問題
+        renderProjects();
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', renderProjects);
+        }
     </script>
 </body>
 </html>
