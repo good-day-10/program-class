@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: 藝術襯線體與典雅字型 -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,15 +19,15 @@
                 extend: {
                     colors: {
                         land: {
-                            bg: '#F7F4EE',           /* 大地文化感手感暖米白 */
-                            card: '#EFEBE4',         /* 微質感沉穩紙感卡片 */
-                            dark: '#1A3029',         /* 深沉墨綠 */
-                            slate: '#27443B',        /* 典雅綠竹墨色 */
-                            gold: '#B58E52',         /* 人文古銅金 */
+                            bg: '#F7F4EE',
+                            card: '#EFEBE4',
+                            dark: '#1A3029',
+                            slate: '#27443B',
+                            gold: '#B58E52',
                             goldhover: '#9E783E',
-                            terracotta: '#A65D47',   /* 陶土微紅暖色 */
-                            text: '#2C2B29',         /* 沉穩墨黑文字 */
-                            muted: '#6B6861'         /* 人文灰 */
+                            terracotta: '#A65D47',
+                            text: '#2C2B29',
+                            muted: '#6B6861'
                         }
                     },
                     fontFamily: {
@@ -44,7 +44,6 @@
     </script>
 
     <style>
-        /* 大地藝術節手感紙質與網格紋理 */
         .land-texture {
             background-color: #F7F4EE;
             background-image: 
@@ -52,6 +51,39 @@
                 radial-gradient(rgba(26, 48, 41, 0.03) 1px, transparent 0);
             background-size: 36px 36px;
             background-position: 0 0, 18px 18px;
+            position: relative;
+        }
+
+        /* 網格背景上規律流動的光點動畫 */
+        .light-dots-container {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .grid-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.8), 0 0 12px 3px rgba(181, 142, 82, 0.5);
+            animation: moveDot 8s infinite linear;
+        }
+
+        .dot-1 { top: 72px; left: 0%; animation-delay: 0s; animation-duration: 9s; }
+        .dot-2 { top: 180px; left: 0%; animation-delay: 2.5s; animation-duration: 11s; }
+        .dot-3 { top: 324px; left: 0%; animation-delay: 5s; animation-duration: 8s; }
+        .dot-4 { top: 504px; left: 0%; animation-delay: 1.2s; animation-duration: 10s; }
+        .dot-5 { top: 684px; left: 0%; animation-delay: 3.8s; animation-duration: 12s; }
+
+        @keyframes moveDot {
+            0% { left: -2%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { left: 102%; opacity: 0; }
         }
 
         .paper-card {
@@ -60,7 +92,6 @@
             backdrop-filter: blur(8px);
         }
 
-        /* 幾何科技藝術邊框 */
         .art-border {
             position: relative;
         }
@@ -77,25 +108,13 @@
             pointer-events: none;
         }
 
-        /* 藝術背景網格 */
         .art-grid {
-            background-size: 48px 48px;
+            background-size: 36px 36px;
             background-image: 
-                linear-gradient(to right, rgba(181, 142, 82, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(181, 142, 82, 0.05) 1px, transparent 1px);
+                linear-gradient(to right, rgba(181, 142, 82, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(181, 142, 82, 0.08) 1px, transparent 1px);
         }
 
-        /* 語音波形動畫 */
-        @keyframes audio-wave {
-            0%, 100% { height: 4px; }
-            50% { height: 18px; }
-        }
-        .animate-wave-1 { animation: audio-wave 1.2s infinite ease-in-out; }
-        .animate-wave-2 { animation: audio-wave 0.8s infinite ease-in-out 0.2s; }
-        .animate-wave-3 { animation: audio-wave 1.0s infinite ease-in-out 0.4s; }
-        .animate-wave-4 { animation: audio-wave 1.4s infinite ease-in-out 0.1s; }
-
-        /* 頁面淡入 */
         .page-transition {
             animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
@@ -112,10 +131,18 @@
 </head>
 <body class="land-texture text-land-text font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-land-gold selection:text-white">
 
-    <!-- 頂部膠囊導覽列 Navigation Bar -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-land-bg/90 border-b border-land-gold/20 shadow-sm">
+    <!-- 背景動態光點 -->
+    <div class="light-dots-container">
+        <div class="grid-dot dot-1"></div>
+        <div class="grid-dot dot-2"></div>
+        <div class="grid-dot dot-3"></div>
+        <div class="grid-dot dot-4"></div>
+        <div class="grid-dot dot-5"></div>
+    </div>
+
+    <!-- 頂部膠囊導覽列 -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-land-bg/90 border-b border-land-gold/20 shadow-sm relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- 網站 Logo 與 Title -->
             <div class="flex items-center space-x-3 cursor-pointer" onclick="switchPage('home')">
                 <div class="w-10 h-10 rounded-lg bg-land-dark flex items-center justify-center text-land-gold shadow-md art-border">
                     <i class="fa-solid font-mono text-base font-bold">&lt;/&gt;</i>
@@ -127,8 +154,6 @@
                 </div>
             </div>
 
-            <!-- 桌面端切換頁面選單 (無第幾頁與冒號) -->
-            <!-- 桌面端切換頁面選單 -->
             <nav class="hidden md:flex items-center space-x-1.5 bg-land-card/70 px-2 py-1.5 rounded-full border border-land-gold/30 art-border">
                 <button onclick="switchPage('home')" id="nav-home" class="nav-btn px-5 py-2 rounded-full text-xs font-medium transition-all duration-300 bg-land-dark text-land-gold shadow-sm">
                     <i class="fa-solid fa-house mr-1.5"></i>首頁與團隊
@@ -141,7 +166,6 @@
                 </button>
             </nav>
 
-            <!-- 行動端選單按鈕 -->
             <div class="md:hidden">
                 <button onclick="toggleMobileMenu()" class="p-2.5 rounded-lg bg-land-card border border-land-gold/30 text-land-dark hover:bg-land-gold/10 transition-colors">
                     <i class="fa-solid fa-bars text-lg"></i>
@@ -149,7 +173,6 @@
             </div>
         </div>
 
-        <!-- 行動端下拉選單 -->
         <div id="mobile-menu" class="hidden md:hidden border-b border-land-gold/20 bg-land-bg px-4 pt-2 pb-4 space-y-2">
             <button onclick="switchPage('home'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium bg-land-card border border-land-gold/20 flex items-center justify-between">
                 <span><i class="fa-solid fa-house mr-2 text-land-gold"></i>首頁與團隊</span>
@@ -166,12 +189,11 @@
         </div>
     </header>
 
-    <!-- 主要內容區 Main Area -->
-    <main class="flex-grow">
+    <!-- 主要內容區 -->
+    <main class="flex-grow relative z-10">
 
-        <!-- ================= 首頁與團隊 (Home View) ================= -->
+        <!-- 首頁與團隊 -->
         <section id="page-home" class="page-transition">
-            <!-- Hero Banner -->
             <div class="relative py-16 sm:py-24 art-grid border-b border-land-gold/15">
                 <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-land-gold/15 border border-land-gold/30 text-land-gold text-xs font-mono font-medium mb-6">
@@ -202,8 +224,6 @@
 
             <!-- 團隊成員與指導老師 -->
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                
-                <!-- 指導老師區塊 -->
                 <div class="mb-14 text-center">
                     <div class="max-w-xl mx-auto mb-6">
                         <span class="text-xs font-mono tracking-widest text-land-gold uppercase font-semibold">Instructor</span>
@@ -223,7 +243,6 @@
                     </div>
                 </div>
 
-                <!-- 學生組員區塊 -->
                 <div class="mb-14">
                     <div class="text-center max-w-xl mx-auto mb-8">
                         <span class="text-xs font-mono tracking-widest text-land-gold uppercase font-semibold">Team Members</span>
@@ -231,45 +250,44 @@
                         <div class="w-12 h-0.5 bg-land-gold mx-auto mt-2"></div>
                     </div>
 
-                    <!-- 7 位學生 卡片陣列 -->
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                        <div onclick="showMemberInfo('徐愷', '負責前端畫布邏輯與傳統墨跡互動視覺開發。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
+                        <div onclick="showMemberInfo('徐愷', '負責台灣玩耍記憶資料庫開發。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
                             <div class="w-10 h-10 rounded-full bg-land-dark/10 group-hover:bg-land-dark text-land-gold flex items-center justify-center transition-colors">
                                 <i class="fa-solid fa-user-code text-sm"></i>
                             </div>
                             <span class="font-serif font-bold text-base text-land-dark tracking-wide">徐愷</span>
                         </div>
-                        <div onclick="showMemberInfo('陳朝元', '負責數學筆觸演算法設計與動態擴散特效。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
+                        <div onclick="showMemberInfo('陳朝元', '負責數學筆觸演算法設計。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
                             <div class="w-10 h-10 rounded-full bg-land-dark/10 group-hover:bg-land-dark text-land-gold flex items-center justify-center transition-colors">
                                 <i class="fa-solid fa-user-code text-sm"></i>
                             </div>
                             <span class="font-serif font-bold text-base text-land-dark tracking-wide">陳朝元</span>
                         </div>
-                        <div onclick="showMemberInfo('Pig', '負責 AI 時間規劃模組邏輯構想與流程優化。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
+                        <div onclick="showMemberInfo('Pig', '負責 AI 時間規劃模組邏輯。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
                             <div class="w-10 h-10 rounded-full bg-land-dark/10 group-hover:bg-land-dark text-land-gold flex items-center justify-center transition-colors">
                                 <i class="fa-solid fa-user-code text-sm"></i>
                             </div>
                             <span class="font-serif font-bold text-base text-land-dark tracking-wide">Pig</span>
                         </div>
-                        <div onclick="showMemberInfo('殷睿紳', '負責介面排版與使用者任務時間卡片設計。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
+                        <div onclick="showMemberInfo('殷睿紳', '負責文字選擇遊戲開發。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
                             <div class="w-10 h-10 rounded-full bg-land-dark/10 group-hover:bg-land-dark text-land-gold flex items-center justify-center transition-colors">
                                 <i class="fa-solid fa-user-code text-sm"></i>
                             </div>
                             <span class="font-serif font-bold text-base text-land-dark tracking-wide">殷睿紳</span>
                         </div>
-                        <div onclick="showMemberInfo('李昊恩', '負責遊戲邏輯與地圖關卡機制編程。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
+                        <div onclick="showMemberInfo('李昊恩', '負責遊戲邏輯與地圖機制。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
                             <div class="w-10 h-10 rounded-full bg-land-dark/10 group-hover:bg-land-dark text-land-gold flex items-center justify-center transition-colors">
                                 <i class="fa-solid fa-user-code text-sm"></i>
                             </div>
                             <span class="font-serif font-bold text-base text-land-dark tracking-wide">李昊恩</span>
                         </div>
-                        <div onclick="showMemberInfo('小蠍', '負責復古像素繪圖與音樂氛圍視覺設計。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
+                        <div onclick="showMemberInfo('小蠍', '負責復古像素繪圖與音樂氛圍。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
                             <div class="w-10 h-10 rounded-full bg-land-dark/10 group-hover:bg-land-dark text-land-gold flex items-center justify-center transition-colors">
                                 <i class="fa-solid fa-user-code text-sm"></i>
                             </div>
-                            <span class="font-serif font-bold text-base text-land-dark tracking-wide"><comment-tag id="1">小蠍</comment-tag id="1" text="將「小蝎」修改為繁體正體字的「小蠍」。" type="suggestion"></span>
+                            <span class="font-serif font-bold text-base text-land-dark tracking-wide">小蠍</span>
                         </div>
-                        <div onclick="showMemberInfo('李宥嫻', '負責聲控音量檢測與物理彈珠對撞開發。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 col-span-2 sm:col-span-1 group">
+                        <div onclick="showMemberInfo('李宥嫻', '負責聲控音量檢測與彈珠對撞。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 col-span-2 sm:col-span-1 group">
                             <div class="w-10 h-10 rounded-full bg-land-dark/10 group-hover:bg-land-dark text-land-gold flex items-center justify-center transition-colors">
                                 <i class="fa-solid fa-user-code text-sm"></i>
                             </div>
@@ -277,22 +295,19 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- ================= 作品介紹 (Project Showcase Page View) ================= -->
+        <!-- 作品介紹 -->
         <section id="page-projects" class="page-transition hidden min-h-screen py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-land-gold/20 gap-6">
                     <div>
                         <span class="text-xs font-mono tracking-widest text-land-gold uppercase font-semibold">Exhibition Showcase</span>
                         <h2 class="font-serif text-3xl sm:text-4xl font-bold text-land-dark mt-1">成果作品展示</h2>
-                        <p class="text-land-muted text-sm mt-1">點擊「查看更多」可查看作品詳細說明並使用線上語音導覽</p>
+                        <p class="text-land-muted text-sm mt-1">點擊「查看更多」可檢視完整作品詳細說明</p>
                     </div>
 
-                    <!-- 篩選器 (展示網站、生活工具、趣味遊戲) -->
                     <div class="flex flex-wrap gap-2">
                         <button onclick="filterProjects('all')" id="filter-all" class="filter-btn active px-4 py-1.5 rounded-full text-xs font-medium border border-land-gold transition-all bg-land-dark text-land-gold shadow-sm">
                             全部作品
@@ -309,88 +324,172 @@
                     </div>
                 </div>
 
-                <!-- 作品列表 Grid -->
                 <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- 作品卡片將由 JS 依據標準範本資料自動動態生成 -->
+                    <!-- 動態渲染作品卡片 -->
                 </div>
-
             </div>
         </section>
 
-        <!-- 作品詳情與語音導覽 Modal (查看更多彈出視窗) -->
+        <!-- 作品詳情 Modal -->
         <div id="project-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity">
             <div class="paper-card rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto art-border shadow-2xl relative p-6 sm:p-8 animate-fadeIn">
-                <!-- 關閉按鈕 -->
-                <button onclick="closeProjectModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-land-dark/10 hover:bg-land-dark hover:text-land-gold transition-all text-land-dark flex items-center justify-center">
+                <button onclick="closeProjectModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-land-dark/10 hover:bg-land-dark hover:text-land-gold transition-all text-land-dark flex items-center justify-center z-20">
                     <i class="fa-solid fa-xmark text-base"></i>
                 </button>
 
-                <!-- Modal 內容 -->
                 <div class="mb-6">
                     <span id="modal-tag" class="text-[11px] font-mono px-3 py-1 rounded-full bg-land-gold/15 text-land-gold border border-land-gold/30 font-semibold">展示網站</span>
                     <h3 id="modal-title" class="font-serif font-bold text-2xl sm:text-3xl text-land-dark mt-3">作品名稱</h3>
-                    <p id="modal-author" class="text-xs text-land-gold font-semibold font-mono mt-1">製作人：團隊成員</p>
+                    <p id="modal-author" class="text-xs text-land-gold font-semibold font-mono mt-1">製作人：徐愷</p>
                 </div>
 
-                <div class="relative h-56 sm:h-64 rounded-2xl overflow-hidden mb-6 bg-land-dark art-border">
-                    <img id="modal-img" src="" alt="作品大圖" class="w-full h-full object-cover">
+                <!-- 彈窗內容頭圖容器 -->
+                <div id="modal-preview-container" class="relative min-h-[220px] rounded-2xl overflow-hidden mb-6 art-border shadow-inner">
                 </div>
 
                 <div class="mb-6">
-                    <h4 class="font-serif font-bold text-base text-land-dark mb-2">作品詳細介紹</h4>
-                    <p id="modal-desc" class="text-xs sm:text-sm text-land-dark/80 leading-relaxed font-sans">
+                    <h4 class="font-serif font-bold text-base text-land-dark mb-2">彈窗詳細介紹</h4>
+                    <p id="modal-desc" class="text-xs sm:text-sm text-land-dark/80 leading-relaxed font-sans whitespace-pre-line">
                         詳細說明內容...
                     </p>
                 </div>
-
             </div>
         </div>
 
-        <!-- ================= 課程介紹 (Course Showcase Page View) ================= -->
+        <!-- 課程介紹 -->
         <section id="page-course" class="page-transition hidden min-h-screen py-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-xs font-mono tracking-widest text-land-gold uppercase font-semibold">Curriculum Roadmap</span>
-                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-land-dark mt-2">程式大選修 - 課程地圖</h2>
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-xs font-mono tracking-widest text-land-gold uppercase font-semibold">Curriculum Overview</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-land-dark mt-2">程式大選修 - 課程介紹</h2>
                     <div class="w-20 h-0.5 bg-land-gold mx-auto mt-4"></div>
-                    <p class="text-land-muted text-sm mt-4 leading-relaxed">
-                        結合邏輯思維與實踐開發。學生在學期中經歷四大模組訓練，建立邏輯架構與自主學習專案能力。
+                </div>
+
+                <!-- 核心理念宣告 -->
+                <div class="paper-card p-6 sm:p-8 rounded-2xl art-border shadow-land mb-12 bg-gradient-to-br from-white to-land-card">
+                    <p class="text-base sm:text-lg text-land-dark font-serif font-bold leading-relaxed mb-4">
+                        國中生與 AI 協同合作，將腦海中的想法打磨成能順暢上線、能自信上台展現的完整作品。
+                    </p>
+                    <p class="text-xs sm:text-sm text-land-muted leading-relaxed font-sans">
+                        這門課的核心目標並非培養工程師。程式撰寫交由 AI 代勞，學生重點修練的是：如何把模糊的構想講得清晰、落實成型，並真正切中使用者的需求。
                     </p>
                 </div>
 
-                <!-- 核心四大學習模組 -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="paper-card p-6 rounded-2xl art-border text-center shadow-land hover:shadow-land-hover transition-all">
-                        <div class="w-12 h-12 bg-land-dark text-land-gold rounded-xl mx-auto flex items-center justify-center text-lg mb-4 shadow-md">
-                            <i class="fa-solid fa-code"></i>
+                <!-- 學習目標 -->
+                <div class="mb-14">
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-land-dark mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-bullseye text-land-gold"></i>
+                        <span>學習目標</span>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="paper-card p-5 rounded-xl border border-land-gold/30 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-land-dark text-land-gold flex items-center justify-center font-bold text-base flex-shrink-0">
+                                <i class="fa-solid fa-comments"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-sm text-land-dark mb-1">與 AI 工具深度合作</h4>
+                                <p class="text-xs text-land-muted leading-relaxed">與 Gemini 等 AI 工具深度合作，高效完成作品。</p>
+                            </div>
                         </div>
-                        <h3 class="font-serif font-bold text-base text-land-dark">Mod 1: 程式基礎與邏輯</h3>
-                        <p class="text-xs text-land-muted mt-2 leading-relaxed">學習控制流程、條件判斷與演算法邏輯思維訓練。</p>
-                    </div>
 
-                    <div class="paper-card p-6 rounded-2xl art-border text-center shadow-land hover:shadow-land-hover transition-all">
-                        <div class="w-12 h-12 bg-land-dark text-land-gold rounded-xl mx-auto flex items-center justify-center text-lg mb-4 shadow-md">
-                            <i class="fa-solid fa-palette"></i>
+                        <div class="paper-card p-5 rounded-xl border border-land-gold/30 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-land-dark text-land-gold flex items-center justify-center font-bold text-base flex-shrink-0">
+                                <i class="fa-solid fa-cloud-code"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-sm text-land-dark mb-1">雲端開發與版本控制</h4>
+                                <p class="text-xs text-land-muted leading-relaxed">運用 Replit 進行雲端開發，並以 Git 掌握版本管理。</p>
+                            </div>
                         </div>
-                        <h3 class="font-serif font-bold text-base text-land-dark">Mod 2: 現代網頁與美學</h3>
-                        <p class="text-xs text-land-muted mt-2 leading-relaxed">學習 HTML/CSS/Tailwind UI 視覺規範與響應式介面設計。</p>
-                    </div>
 
-                    <div class="paper-card p-6 rounded-2xl art-border text-center shadow-land hover:shadow-land-hover transition-all">
-                        <div class="w-12 h-12 bg-land-dark text-land-gold rounded-xl mx-auto flex items-center justify-center text-lg mb-4 shadow-md">
-                            <i class="fa-solid fa-robot"></i>
+                        <div class="paper-card p-5 rounded-xl border border-land-gold/30 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-land-dark text-land-gold flex items-center justify-center font-bold text-base flex-shrink-0">
+                                <i class="fa-solid fa-network-wired"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-sm text-land-dark mb-1">理解 Agent / MCP 概念</h4>
+                                <p class="text-xs text-land-muted leading-relaxed">理解 Agent、MCP 與 Context 的概念，學會為 AI 串接外部工具。</p>
+                            </div>
                         </div>
-                        <h3 class="font-serif font-bold text-base text-land-dark">Mod 3: AI 協作開發</h3>
-                        <p class="text-xs text-land-muted mt-2 leading-relaxed">運用 Prompt Engineering 與大型語言模型進行程式除錯與程式碼生成。</p>
-                    </div>
 
-                    <div class="paper-card p-6 rounded-2xl art-border text-center shadow-land hover:shadow-land-hover transition-all">
-                        <div class="w-12 h-12 bg-land-dark text-land-gold rounded-xl mx-auto flex items-center justify-center text-lg mb-4 shadow-md">
-                            <i class="fa-solid fa-bullhorn"></i>
+                        <div class="paper-card p-5 rounded-xl border border-land-gold/30 flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-land-dark text-land-gold flex items-center justify-center font-bold text-base flex-shrink-0">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-sm text-land-dark mb-1">批判思考與資安意識</h4>
+                                <p class="text-xs text-land-muted leading-relaxed">培養批判思考，能辨識 AI 的錯誤資訊並避開資安風險。</p>
+                            </div>
                         </div>
-                        <h3 class="font-serif font-bold text-base text-land-dark">Mod 4: 成果發表與展示</h3>
-                        <p class="text-xs text-land-muted mt-2 leading-relaxed">完成專案部署、簡報提報與互動展示網頁搭建。</p>
+                    </div>
+                </div>
+
+                <!-- 學習旅程 -->
+                <div class="mb-14">
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-land-dark mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-route text-land-gold"></i>
+                        <span>學習旅程</span>
+                    </h3>
+                    <p class="text-xs sm:text-sm text-land-muted leading-relaxed mb-6">
+                        學生將在整學期中反覆實踐六個核心步驟：<span class="text-land-dark font-bold">觀察 → 定義 → 發想 → 原型製作 → 驗收 → 使用者測試</span>。AI 大幅降低了原型製作的門檻與成本，因此課程能將重心回歸到前期的問題洞察，以及後期的成果驗證與測試改進。
+                    </p>
+
+                    <!-- 雙階段卡片 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- 探索期 -->
+                        <div class="paper-card p-6 rounded-2xl art-border shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-xs font-mono font-bold px-3 py-1 rounded-full bg-land-gold/15 text-land-gold border border-land-gold/30">第 1 – 7 週</span>
+                                    <i class="fa-solid fa-compass text-land-gold text-lg"></i>
+                                </div>
+                                <h4 class="font-serif font-bold text-lg text-land-dark mb-3">探索期：廣泛探索</h4>
+                                <ul class="space-y-2.5 text-xs text-land-dark/80 leading-relaxed">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-land-gold mt-0.5"></i>
+                                        <span>每週切換不同主題，親自動手打造各式微型工具（抽籤器、倒數計時器或單字卡）。</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-land-gold mt-0.5"></i>
+                                        <span>遭遇瓶頸並非失敗，而是幫助學生摸索出自己與 AI 協作的能力邊界。</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-land-gold mt-0.5"></i>
+                                        <span>工具層次漸進：從 Gemini Canvas 入門，轉移至 Replit，進一步導入 Agent Skill 與 MCP。</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-land-gold mt-0.5"></i>
+                                        <span>自第 6 週起走入真實情境訪談身邊對象，探尋切實需求為期末專案奠基。</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 收斂期 -->
+                        <div class="paper-card p-6 rounded-2xl art-border shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-xs font-mono font-bold px-3 py-1 rounded-full bg-land-dark text-land-gold">第 8 – 13 週</span>
+                                    <i class="fa-solid fa-crosshairs text-land-gold text-lg"></i>
+                                </div>
+                                <h4 class="font-serif font-bold text-lg text-land-dark mb-3">收斂期：扎實深耕</h4>
+                                <ul class="space-y-2.5 text-xs text-land-dark/80 leading-relaxed">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-land-gold mt-0.5"></i>
+                                        <span>從過往嘗試中精選一項主題，進行深度開發與完善。</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-land-gold mt-0.5"></i>
+                                        <span>透過組員間交替測試、回饋問題並交由 AI 修正，在「小步快跑、反覆疊代」中優化作品。</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-land-gold mt-0.5"></i>
+                                        <span>課程最後一週，於跨選修課結業展中設攤亮相，並輪流上台發表創作成果。</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -399,8 +498,7 @@
 
     </main>
 
-    <!-- 頁尾 Footer -->
-    <footer class="bg-land-dark text-land-bg border-t border-land-gold/30 mt-16">
+    <footer class="bg-land-dark text-land-bg border-t border-land-gold/30 mt-16 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded bg-land-gold/20 flex items-center justify-center text-land-gold text-xs font-mono font-bold border border-land-gold/40">
@@ -414,21 +512,90 @@
         </div>
     </footer>
 
-    <!-- JavaScript 邏輯控制與 Speech Audio Guide -->
+    <!-- JavaScript 邏輯控制 -->
     <script>
-        // 頁面切換機制 (優先定義於全域範疇)
+        // 專案資料庫 (採用結構化 DOM UI 解決中文字體亂碼及 SVG 破圖問題)
+        const projectsData = [
+            {
+                name: "台灣玩耍記憶資料庫",
+                author: "徐愷",
+                category: "site",
+                tagText: "展示網站",
+                shortDesc: "匯集與典藏臺灣在地娛樂、遊戲與童年玩耍記憶的數位資料庫，紀錄跨世代的休閒生活與文化軌跡。",
+                fullDesc: "「台灣玩耍記憶資料庫」是一個專注於整理與呈現臺灣童年遊戲、在地娛樂及休閒文化的數位平台。網站透過蒐集不同時代的玩耍記憶與童玩故事，將屬於臺灣人的共同生活體驗數位化典藏。不論是傳統童玩、街坊遊戲或時代記憶，皆在此被完整紀錄與呈現，邀請大眾一同探索臺灣豐富多元的娛樂文化發展脈絡，重溫跨世代的童年回憶。",
+                cardBg: "from-[#1A3029] to-[#27443B]",
+                cardIcon: "fa-database",
+                previewTitle: "台灣玩耍記憶資料庫",
+                previewSubtitle: "一座正在長大的集體記憶",
+                previewHero: "玩過的，就不會消失。"
+            },
+            {
+                name: "智生活：AI 學習進度規劃器",
+                author: "Pig",
+                category: "tool",
+                tagText: "生活工具",
+                shortDesc: "利用語言模型為國中生量身打造個人化學習日曆與時間管理小幫手，提升每日自主學習效率。",
+                fullDesc: "《智生活》是一款專為國中生設計的自主學習輔助工具。整合生成式 AI 與目標分解演算法，協助學生根據個人考程與學習進度自動調整每日讀書計畫，並具備即時專注計時與學習成就圖表回饋，幫助學生掌握自我學習節奏。",
+                cardBg: "from-[#27443B] to-[#1F3830]",
+                cardIcon: "fa-calendar-check",
+                previewTitle: "智生活 AI 規劃",
+                previewSubtitle: "高效自主學習助手",
+                previewHero: "把目標分解，讓進步看得見"
+            },
+            {
+                name: "選擇前，請深思",
+                author: "殷睿紳",
+                category: "game",
+                tagText: "趣味遊戲",
+                shortDesc: "在學生與大人的雙重視角間切換，面對人際、課業與職場的微妙分歧，體驗微小選擇帶來的連鎖反應。",
+                fullDesc: "《選擇前，請深思》是一部呈現生活真實選擇題的互動文字作品。遊戲提供「學生」與「大人」雙視角，帶領玩家走進課業壓力、群組人際風波、分組合作困境與職場步調調整等日常場景。面對早晨鬧鐘的掙扎、朋友圈的尷尬話題或考題挫折，沒有絕對的標準答案。每一次選擇與停頓，都考驗著價值取捨，引導玩家在交錯的對話中，梳理出屬於自己的處事哲學與生活步調。",
+                cardBg: "from-[#3A2D23] to-[#2C2118]",
+                cardIcon: "fa-code-branch",
+                previewTitle: "玩家要如何選擇？",
+                previewSubtitle: "01 我的一天 (學生版)   |   02 我的一天 (大人版)",
+                previewHero: "抉擇連鎖反應"
+            },
+            {
+                name: "鐘樓迴響：復古風時空解謎",
+                author: "李昊恩、小蠍",
+                category: "game",
+                tagText: "趣味遊戲",
+                shortDesc: "結合像素美術與古典交響樂音效的雙人合作解謎遊戲。玩家操控掌控時間與空間的主角尋找解謎密碼。",
+                fullDesc: "《鐘樓迴響》是一副採用古典雙色像素風格打造的解謎遊戲。玩家將扮演掌控時間與空間鑰匙的探險家，在悠揚的古典交響樂與時鐘滴答聲中，解開層層機關，探索古老鐘樓背後被封印的秘密。",
+                cardBg: "from-[#2B2338] to-[#1D1726]",
+                cardIcon: "fa-clock",
+                previewTitle: "鐘樓迴響",
+                previewSubtitle: "復古雙色像素解謎",
+                previewHero: "穿梭時空，解開鐘樓鎖鑰"
+            },
+            {
+                name: "光雕大冒險：聲控彈珠臺",
+                author: "李宥嫻",
+                category: "game",
+                tagText: "趣味遊戲",
+                shortDesc: "運用麥克風音量與物理引擎相結合的趣味互動彈珠遊戲，玩家可以用聲音喊叫來給予彈珠額外推力！",
+                fullDesc: "《光雕大冒險》運用裝置麥克風音量偵測與物理引擎碰撞技術，創作出新型態的聲控彈珠遊戲。玩家不僅能利用按鈕發射，還能對著麥克風呐喊發聲，給予彈珠瞬間的加速與光雕特效推進！",
+                cardBg: "from-[#3B251E] to-[#2B1B15]",
+                cardIcon: "fa-gamepad",
+                previewTitle: "光雕大冒險",
+                previewSubtitle: "聲控物理彈珠互動",
+                previewHero: "用你的聲音，驅動物理光束"
+            }
+        ];
+
+        // 頁面切換機制
         function switchPage(pageId) {
             const pages = ['home', 'projects', 'course'];
             pages.forEach(p => {
                 const pageEl = document.getElementById(`page-${p}`);
                 const navBtn = document.getElementById(`nav-${p}`);
                 if (p === pageId) {
-                    if (pageEl) pageEl.classList.remove('hidden');
+                    pageEl.classList.remove('hidden');
                     if (navBtn) {
                         navBtn.className = "nav-btn px-5 py-2 rounded-full text-xs font-medium transition-all duration-300 bg-land-dark text-land-gold shadow-sm";
                     }
                 } else {
-                    if (pageEl) pageEl.classList.add('hidden');
+                    pageEl.classList.add('hidden');
                     if (navBtn) {
                         navBtn.className = "nav-btn px-5 py-2 rounded-full text-xs font-medium transition-all duration-300 text-land-muted hover:text-land-dark";
                     }
@@ -437,97 +604,11 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // 行動端選單開關
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
-            if (menu) menu.classList.toggle('hidden');
+            menu.classList.toggle('hidden');
         }
 
-        /*
-          標準作品資料模板架構：
-          {
-              title: "【作品名稱】(用於卡片標題與彈跳標題)",
-              author: "【製作人】",
-              categoryKey: "site / tool / game (分類識別碼)",
-              tag: "【卡片上的標籤文字】(展示網站 / 生活工具 / 趣味遊戲)",
-              summary: "【卡片簡介】",
-              modalDescription: "【彈窗詳細介紹】",
-              image: "作品代表圖片網址"
-          }
-        */
-        const projectsData = [
-            {
-                title: "台灣玩耍記憶資料庫",
-                author: "徐愷",
-                categoryKey: "site",
-                tag: "展示網站",
-                summary: "匯集與典藏臺灣在地娛樂、遊戲與童年玩耍記憶的數位資料庫，紀錄跨世代的休閒生活與文化軌跡。",
-                modalDescription: "「台灣玩耍記憶資料庫」是一個專注於整理與呈現臺灣童年遊戲、在地娛樂及休閒文化的數位平台。網站透過蒐集不同時代的玩耍記憶與童玩故事，將屬於臺灣人的共同生活體驗數位化典藏。不論是傳統童玩、街坊遊戲或時代記憶，皆在此被完整紀錄與呈現，邀請大眾一同探索臺灣豐富多元的娛樂文化發展脈絡，重溫跨世代的童年回憶。",
-                image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'><rect width='800' height='600' fill='%231b2d39'/><path d='M800,200 Q700,500 500,600 Q650,400 800,200 Z' fill='none' stroke='%23385266' stroke-width='2'/><g transform='translate(60, 50)'><rect x='0' y='0' width='56' height='56' rx='16' fill='%23e0c097'/><text x='28' y='38' font-family='serif' font-size='32' font-weight='bold' fill='%231b2d39' text-anchor='middle'>玩</text><text x='70' y='22' font-family='sans-serif' font-size='13' fill='%23e5974c' font-weight='bold'>一座正在長大的集體記憶</text><text x='70' y='46' font-family='sans-serif' font-size='20' font-weight='bold' fill='%23ffffff'>台灣玩耍記憶資料庫</text></g><text x='60' y='200' font-family='sans-serif' font-size='16' fill='%23e5974c' font-weight='bold'>一座正在長大的集體記憶</text><text x='60' y='290' font-family='serif' font-size='68' font-weight='900' fill='%23ffffff'>玩過的，</text><text x='350' y='290' font-family='serif' font-size='68' font-weight='900' fill='%23e88764'>就不會消</text><text x='60' y='380' font-family='serif' font-size='68' font-weight='900' fill='%23e88764'>失。</text><text x='60' y='460' font-family='sans-serif' font-size='18' fill='%23a2b7c7'>一座收藏台灣童年與遊戲記憶的溫柔資料庫。從巷口的彈珠、廟埕的躲貓</text><text x='60' y='495' font-family='sans-serif' font-size='18' fill='%23a2b7c7'>貓，到放學路上的一段段集體回憶，這裡都在等人把它說出來。</text></svg>"
-            },
-            {
-                title: "智生活：AI 學習進度規劃器",
-                author: "Pig、殷睿紳",
-                categoryKey: "tool",
-                tag: "生活工具",
-                summary: "利用語言模型為國中生量身打造個人化學習日曆與時間管理小幫手，提升每日自主學習效率。",
-                modalDescription: "《智生活》是一款專為學生設計的自主學習輔助工具。整合生成式 AI 與目標分解演算法，協助學生根據個人考程與學習進度自動調整每日讀書計畫，並具備即時專注計時與學習成就圖表回饋。",
-                image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "鐘樓迴響：復古風時空解謎",
-                author: "李昊恩、小蠍",
-                categoryKey: "game",
-                tag: "趣味遊戲",
-                summary: "結合像素美術與古典交響樂音效的雙人合作解謎遊戲。玩家操控掌控時間與空間的主角尋找解謎密碼。",
-                modalDescription: "《鐘樓迴響》是一副採用古典雙色像素風格打造的解謎遊戲。玩家將扮演掌控時間與空間鑰匙的探險家，在悠揚的古典交響樂與時鐘滴答聲中，解開層層機關，探索古老鐘樓背後被封印的秘密。",
-                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "光雕大冒險：聲控彈珠臺",
-                author: "李宥嫻",
-                categoryKey: "game",
-                tag: "趣味遊戲",
-                summary: "運用麥克風音量與物理引擎相結合的趣味互動彈珠遊戲，玩家可以用聲音喊叫來給予彈珠額外推力！",
-                modalDescription: "《光雕大冒險》運用裝置麥克風音量偵測與物理引擎碰撞技術，創作出新型態的聲控彈珠遊戲。玩家不僅能利用按鈕發射，還能對著麥克風吶喊發聲，給予彈珠瞬間的加速與光雕特效推進！",
-                image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80"
-            }
-        ];
-
-        // 動態根據模板資料渲染作品卡片列表
-        function renderProjects() {
-            const grid = document.getElementById('projects-grid');
-            if (!grid) return;
-
-            grid.innerHTML = projectsData.map((item, index) => `
-                <div class="project-card paper-card rounded-2xl overflow-hidden shadow-land hover:shadow-land-hover transition-all duration-300 art-border flex flex-col" data-category="${item.categoryKey}">
-                    <div class="relative h-48 overflow-hidden bg-land-dark">
-                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/800x600/1A3029/B58E52?text=${encodeURIComponent(item.title)}'">
-                        <span class="absolute top-3 right-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-land-dark/90 text-land-gold border border-land-gold/40">${item.tag}</span>
-                    </div>
-                    <div class="p-6 flex-grow flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-serif font-bold text-lg text-land-dark mb-1">${item.title}</h3>
-                            <p class="text-xs text-land-gold font-semibold font-mono mb-3"><i class="fa-solid fa-pen-nib mr-1"></i>製作人：${item.author}</p>
-                            <p class="text-xs text-land-muted leading-relaxed line-clamp-3 mb-4">
-                                ${item.summary}
-                            </p>
-                        </div>
-                        <button onclick="openProjectModal(${index})" class="w-full py-2.5 px-4 rounded-xl bg-land-dark text-land-gold text-xs font-medium hover:bg-land-slate transition-all flex items-center justify-center gap-2 shadow-sm">
-                            <i class="fa-solid fa-circle-info text-xs"></i>
-                            <span>查看更多</span>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        let currentModalIndex = null;
-        let synth = window.speechSynthesis;
-        let currentUtterance = null;
-        let isPaused = false;
-
-        // 作品類別篩選
         function filterProjects(category) {
             const cards = document.querySelectorAll('.project-card');
             const buttons = document.querySelectorAll('.filter-btn');
@@ -550,31 +631,72 @@
             });
         }
 
-        // 打開作品詳情 Modal
+        // 渲染作品卡片 UI（使用 HTML，不使用容易出現亂碼問號的 SVG 圖片）
+        function renderProjects() {
+            const container = document.getElementById('projects-grid');
+            if (!container) return;
+
+            container.innerHTML = projectsData.map((project, index) => `
+                <div class="project-card paper-card rounded-2xl overflow-hidden shadow-land hover:shadow-land-hover transition-all duration-300 art-border flex flex-col" data-category="${project.category}">
+                    
+                    <!-- DOM 繪製的高質感作品封面區 -->
+                    <div class="relative h-48 bg-gradient-to-br ${project.cardBg} p-6 flex flex-col justify-between border-b border-land-gold/20">
+                        <div class="flex items-center justify-between">
+                            <div class="w-8 h-8 rounded-lg bg-land-gold/20 flex items-center justify-center text-land-gold text-sm border border-land-gold/40">
+                                <i class="fa-solid ${project.cardIcon}"></i>
+                            </div>
+                            <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/40 text-land-gold border border-land-gold/40">${project.tagText}</span>
+                        </div>
+
+                        <div>
+                            <span class="text-[10px] text-land-gold/80 font-serif block tracking-wider mb-0.5">${project.previewSubtitle}</span>
+                            <h4 class="font-serif font-bold text-xl text-white tracking-wide leading-tight">${project.previewHero}</h4>
+                        </div>
+                    </div>
+
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif font-bold text-lg text-land-dark mb-1">${project.name}</h3>
+                            <p class="text-xs text-land-gold font-semibold font-mono mb-3"><i class="fa-solid fa-pen-nib mr-1"></i>製作人：${project.author}</p>
+                            <p class="text-xs text-land-muted leading-relaxed line-clamp-3 mb-4">
+                                ${project.shortDesc}
+                            </p>
+                        </div>
+                        <button onclick="openProjectModal(${index})" class="w-full py-2.5 px-4 rounded-xl bg-land-dark text-land-gold text-xs font-medium hover:bg-land-slate transition-all flex items-center justify-center gap-2 shadow-sm">
+                            <i class="fa-solid fa-circle-info text-xs"></i>
+                            <span>查看更多</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
         function openProjectModal(index) {
-            currentModalIndex = index;
             const project = projectsData[index];
             
-            document.getElementById('modal-tag').textContent = project.tag;
-            document.getElementById('modal-title').textContent = project.title;
+            document.getElementById('modal-tag').textContent = project.tagText;
+            document.getElementById('modal-title').textContent = project.name;
             document.getElementById('modal-author').textContent = `製作人：${project.author}`;
-            document.getElementById('modal-desc').textContent = project.modalDescription;
-            
-            const imgEl = document.getElementById('modal-img');
-            imgEl.src = project.image;
-            imgEl.onerror = function() {
-                this.src = `https://placehold.co/800x600/1A3029/B58E52?text=${encodeURIComponent(project.title)}`;
-            };
+            document.getElementById('modal-desc').textContent = project.fullDesc;
+
+            // 渲染彈窗預覽圖
+            const previewContainer = document.getElementById('modal-preview-container');
+            previewContainer.className = `relative p-8 bg-gradient-to-br ${project.cardBg} rounded-2xl flex flex-col justify-center items-center text-center border border-land-gold/30 shadow-inner min-h-[180px]`;
+            previewContainer.innerHTML = `
+                <div class="w-12 h-12 rounded-full bg-land-gold/20 flex items-center justify-center text-land-gold text-xl mb-3 border border-land-gold/40">
+                    <i class="fa-solid ${project.cardIcon}"></i>
+                </div>
+                <span class="text-xs text-land-gold/90 font-serif mb-1">${project.previewSubtitle}</span>
+                <h3 class="font-serif font-bold text-2xl text-white tracking-wider">${project.previewHero}</h3>
+            `;
 
             document.getElementById('project-modal').classList.remove('hidden');
         }
 
-        // 關閉 Modal
         function closeProjectModal() {
             document.getElementById('project-modal').classList.add('hidden');
         }
 
-        // 組員對話提示 Modal
         function showMemberInfo(name, role) {
             const messageBox = document.createElement('div');
             messageBox.className = "fixed bottom-8 right-8 z-50 paper-card p-4 rounded-xl border border-land-gold text-land-dark shadow-2xl flex items-center gap-3 animate-fadeIn max-w-xs";
@@ -595,11 +717,8 @@
             }, 3000);
         }
 
-        // 初始化頁面渲染：立即執行 renderProjects 以防止 DOMContentLoaded 事件漏抓問題
+        // 立即執行卡片渲染
         renderProjects();
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', renderProjects);
-        }
     </script>
 </body>
 </html>
