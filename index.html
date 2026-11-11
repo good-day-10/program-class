@@ -313,7 +313,8 @@
         <!-- 作品介紹 -->
         <section id="page-projects" class="page-transition hidden min-h-screen py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-land-gold/20 gap-6">
+                <!-- 移除 border-b border-land-gold/20，解決橫線與背景衝突問題 -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 gap-6">
                     <div>
                         <span class="text-xs font-mono tracking-widest text-land-gold uppercase font-semibold">Exhibition Showcase</span>
                         <h2 class="font-serif text-3xl sm:text-4xl font-bold text-land-dark mt-1">成果作品展示</h2>
@@ -355,7 +356,7 @@
                     <p id="modal-author" class="text-xs text-land-gold font-semibold font-mono mt-1">製作人：徐愷</p>
                 </div>
 
-                <!-- 彈窗大圖容器（對齊下半部核心文字） -->
+                <!-- 彈窗大圖容器 -->
                 <div class="relative h-64 sm:h-72 rounded-2xl overflow-hidden mb-6 bg-land-dark art-border shadow-md">
                     <img id="modal-img" src="" alt="作品預覽" class="w-full h-full object-cover object-bottom">
                 </div>
@@ -534,8 +535,8 @@
                 author: "徐愷",
                 category: "site",
                 tagText: "展示網站",
-                // 圖二：台灣玩耍記憶資料庫封面畫布 (使用 URIEncode SVG 確保畫質與文字對齊)
-                image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'><rect width='800' height='500' fill='%231b2a38'/><rect x='40' y='35' width='45' height='45' rx='10' fill='%23e0cca0'/><text x='62' y='65' fill='%231b2a38' font-family='sans-serif' font-size='22' font-weight='bold' text-anchor='middle'>玩</text><text x='100' y='48' fill='%23e28c38' font-family='sans-serif' font-size='13' font-weight='bold'>一座正在長大的集體記憶</text><text x='100' y='72' fill='%23ffffff' font-family='sans-serif' font-size='22' font-weight='bold'>台灣玩耍記憶資料庫</text><text x='40' y='210' fill='%23e28c38' font-family='sans-serif' font-size='15' font-weight='bold'>一座正在長大的集體記憶</text><text x='40' y='290' fill='%23ffffff' font-family='sans-serif' font-size='56' font-weight='900'>玩過的，就不會消</text><text x='40' y='365' fill='%23e07d52' font-family='sans-serif' font-size='56' font-weight='900'>失。</text><text x='40' y='425' fill='%23a0b0c0' font-family='sans-serif' font-size='15'>一座收藏台灣童年與遊戲記憶的溫柔資料庫。</text></svg>",
+                // 已刪除會被砍半的最上方兩行文字，只留主要的核心標題內容
+                image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'><rect width='800' height='500' fill='%231b2a38'/><text x='40' y='210' fill='%23e28c38' font-family='sans-serif' font-size='18' font-weight='bold'>一座正在長大的集體記憶</text><text x='40' y='290' fill='%23ffffff' font-family='sans-serif' font-size='56' font-weight='900'>玩過的，就不會消</text><text x='40' y='365' fill='%23e07d52' font-family='sans-serif' font-size='56' font-weight='900'>失。</text><text x='40' y='425' fill='%23a0b0c0' font-family='sans-serif' font-size='16'>一座收藏台灣童年與遊戲記憶的溫柔資料庫。</text></svg>",
                 shortDesc: "匯集與典藏臺灣在地娛樂、遊戲與童年玩耍記憶的數位資料庫，紀錄跨世代的休閒生活與文化軌跡。",
                 fullDesc: "「台灣玩耍記憶資料庫」是一個專注於整理與呈現臺灣童年遊戲、在地娛樂及休閒文化的數位平台。網站透過蒐集不同時代的玩耍記憶與童玩故事，將屬於臺灣人的共同生活體驗數位化典藏。不論是傳統童玩、街坊遊戲或時代記憶，皆在此被完整紀錄與呈現，邀請大眾一同探索臺灣豐富多元的娛樂文化發展脈絡，重溫跨世代的童年回憶。"
             },
@@ -553,7 +554,6 @@
                 author: "殷睿紳",
                 category: "game",
                 tagText: "趣味遊戲",
-                // 圖三：選擇前，請深思夕陽選單畫面 (定位對齊「玩家要如何選擇？」及選單)
                 image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'><defs><linearGradient id='sunset' x1='0' y1='0' x2='0' y2='1'><stop offset='0%' stop-color='%23d8c3b0'/><stop offset='40%' stop-color='%23b8a08d'/><stop offset='100%' stop-color='%231c1815'/></linearGradient></defs><rect width='800' height='500' fill='url(%23sunset)'/><rect x='0' y='250' width='800' height='250' fill='rgba(0,0,0,0.55)'/><text x='40' y='310' fill='%23ffffff' font-family='serif' font-size='28' font-weight='bold'>玩家要如何選擇？|</text><rect x='180' y='335' width='440' height='42' rx='4' fill='rgba(0,0,0,0.6)' stroke='%23887058' stroke-width='1.5'/><text x='200' y='362' fill='%23d8a870' font-family='sans-serif' font-size='14'>01  我的一天 (學生版)</text><text x='590' y='362' fill='%23d8a870' font-family='sans-serif' font-size='14'>></text><rect x='180' y='390' width='440' height='42' rx='4' fill='rgba(0,0,0,0.6)' stroke='%23887058' stroke-width='1.5'/><text x='200' y='417' fill='%23d8a870' font-family='sans-serif' font-size='14'>02  我的一天 (大人版)</text><text x='590' y='417' fill='%23d8a870' font-family='sans-serif' font-size='14'>></text></svg>",
                 shortDesc: "在學生與大人的雙重視角間切換，面對人際、課業與職場的微妙分歧，體驗微小選擇帶來的連鎖反應。",
                 fullDesc: "《選擇前，請深思》是一部呈現生活真實選擇題的互動文字作品。遊戲提供「學生」與「大人」雙視角，帶領玩家走進課業壓力、群組人際風波、分組合作困境與職場步調調整等日常場景。面對早晨鬧鐘的掙扎、朋友圈的尷尬話題或考題挫折，沒有絕對的標準答案。每一次選擇與停頓，都考驗著價值取捨，引導玩家在交錯的對話中，梳理出屬於自己的處事哲學與生活步調。"
@@ -626,7 +626,7 @@
             });
         }
 
-        // 渲染作品卡片（固定圖片高度與定位，避免文字被遮擋）
+        // 渲染作品卡片
         function renderProjects() {
             const container = document.getElementById('projects-grid');
             if (!container) return;
