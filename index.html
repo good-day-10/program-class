@@ -44,17 +44,19 @@
     </script>
 
     <style>
-        .land-texture {
+        /* 全頁網格背景與光點貫穿 */
+        body {
             background-color: #F7F4EE;
             background-image: 
-                radial-gradient(rgba(181, 142, 82, 0.07) 1px, transparent 0),
-                radial-gradient(rgba(26, 48, 41, 0.03) 1px, transparent 0);
+                radial-gradient(rgba(181, 142, 82, 0.08) 1px, transparent 0),
+                radial-gradient(rgba(26, 48, 41, 0.04) 1px, transparent 0);
             background-size: 36px 36px;
             background-position: 0 0, 18px 18px;
             position: relative;
+            min-height: 100vh;
         }
 
-        /* 網格背景上規律流動的光點動畫 */
+        /* 網格背景上規律流動的光點動畫 (涵蓋首頁、作品區與課程區) */
         .light-dots-container {
             position: absolute;
             inset: 0;
@@ -69,15 +71,16 @@
             height: 4px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.8), 0 0 12px 3px rgba(181, 142, 82, 0.5);
+            box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.9), 0 0 12px 3px rgba(181, 142, 82, 0.6);
             animation: moveDot 8s infinite linear;
         }
 
-        .dot-1 { top: 72px; left: 0%; animation-delay: 0s; animation-duration: 9s; }
-        .dot-2 { top: 180px; left: 0%; animation-delay: 2.5s; animation-duration: 11s; }
-        .dot-3 { top: 324px; left: 0%; animation-delay: 5s; animation-duration: 8s; }
-        .dot-4 { top: 504px; left: 0%; animation-delay: 1.2s; animation-duration: 10s; }
-        .dot-5 { top: 684px; left: 0%; animation-delay: 3.8s; animation-duration: 12s; }
+        .dot-1 { top: 120px; left: 0%; animation-delay: 0s; animation-duration: 9s; }
+        .dot-2 { top: 280px; left: 0%; animation-delay: 2.5s; animation-duration: 11s; }
+        .dot-3 { top: 460px; left: 0%; animation-delay: 5s; animation-duration: 8s; }
+        .dot-4 { top: 680px; left: 0%; animation-delay: 1.2s; animation-duration: 10s; }
+        .dot-5 { top: 900px; left: 0%; animation-delay: 3.8s; animation-duration: 12s; }
+        .dot-6 { top: 1120px; left: 0%; animation-delay: 6s; animation-duration: 9.5s; }
 
         @keyframes moveDot {
             0% { left: -2%; opacity: 0; }
@@ -129,15 +132,16 @@
         ::-webkit-scrollbar-thumb:hover { background: #9E783E; }
     </style>
 </head>
-<body class="land-texture text-land-text font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-land-gold selection:text-white">
+<body class="text-land-text font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-land-gold selection:text-white">
 
-    <!-- 背景動態光點 -->
+    <!-- 全頁動態光點（同步涵蓋作品區與課程區） -->
     <div class="light-dots-container">
         <div class="grid-dot dot-1"></div>
         <div class="grid-dot dot-2"></div>
         <div class="grid-dot dot-3"></div>
         <div class="grid-dot dot-4"></div>
         <div class="grid-dot dot-5"></div>
+        <div class="grid-dot dot-6"></div>
     </div>
 
     <!-- 頂部膠囊導覽列 -->
@@ -325,7 +329,7 @@
                 </div>
 
                 <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- 動態渲染作品卡片 -->
+                    <!-- 動態渲染作品卡片 (包含清晰圖片) -->
                 </div>
             </div>
         </section>
@@ -343,8 +347,9 @@
                     <p id="modal-author" class="text-xs text-land-gold font-semibold font-mono mt-1">製作人：徐愷</p>
                 </div>
 
-                <!-- 彈窗內容頭圖容器 -->
-                <div id="modal-preview-container" class="relative min-h-[220px] rounded-2xl overflow-hidden mb-6 art-border shadow-inner">
+                <!-- 彈窗內容大圖容器 -->
+                <div class="relative h-56 sm:h-64 rounded-2xl overflow-hidden mb-6 bg-land-dark art-border shadow-md">
+                    <img id="modal-img" src="" alt="作品預覽" class="w-full h-full object-cover">
                 </div>
 
                 <div class="mb-6">
@@ -376,49 +381,49 @@
                     </p>
                 </div>
 
-                <!-- 學習目標 -->
+                <!-- 學習目標（修復：清晰 Icon，完全無黑底） -->
                 <div class="mb-14">
                     <h3 class="font-serif text-xl sm:text-2xl font-bold text-land-dark mb-6 flex items-center gap-2">
                         <i class="fa-solid fa-bullseye text-land-gold"></i>
                         <span>學習目標</span>
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="paper-card p-5 rounded-xl border border-land-gold/30 flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-land-dark text-land-gold flex items-center justify-center font-bold text-base flex-shrink-0">
+                        <div class="paper-card p-5 rounded-xl border border-land-gold/30 flex items-start gap-4 hover:border-land-gold transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-land-dark text-land-gold flex items-center justify-center font-bold text-lg flex-shrink-0 shadow-sm art-border">
                                 <i class="fa-solid fa-comments"></i>
                             </div>
                             <div>
-                                <h4 class="font-serif font-bold text-sm text-land-dark mb-1">與 AI 工具深度合作</h4>
+                                <h4 class="font-serif font-bold text-sm sm:text-base text-land-dark mb-1">與 AI 工具深度合作</h4>
                                 <p class="text-xs text-land-muted leading-relaxed">與 Gemini 等 AI 工具深度合作，高效完成作品。</p>
                             </div>
                         </div>
 
-                        <div class="paper-card p-5 rounded-xl border border-land-gold/30 flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-land-dark text-land-gold flex items-center justify-center font-bold text-base flex-shrink-0">
+                        <div class="paper-card p-5 rounded-xl border border-land-gold/30 flex items-start gap-4 hover:border-land-gold transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-land-dark text-land-gold flex items-center justify-center font-bold text-lg flex-shrink-0 shadow-sm art-border">
                                 <i class="fa-solid fa-cloud-code"></i>
                             </div>
                             <div>
-                                <h4 class="font-serif font-bold text-sm text-land-dark mb-1">雲端開發與版本控制</h4>
+                                <h4 class="font-serif font-bold text-sm sm:text-base text-land-dark mb-1">雲端開發與版本控制</h4>
                                 <p class="text-xs text-land-muted leading-relaxed">運用 Replit 進行雲端開發，並以 Git 掌握版本管理。</p>
                             </div>
                         </div>
 
-                        <div class="paper-card p-5 rounded-xl border border-land-gold/30 flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-land-dark text-land-gold flex items-center justify-center font-bold text-base flex-shrink-0">
+                        <div class="paper-card p-5 rounded-xl border border-land-gold/30 flex items-start gap-4 hover:border-land-gold transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-land-dark text-land-gold flex items-center justify-center font-bold text-lg flex-shrink-0 shadow-sm art-border">
                                 <i class="fa-solid fa-network-wired"></i>
                             </div>
                             <div>
-                                <h4 class="font-serif font-bold text-sm text-land-dark mb-1">理解 Agent / MCP 概念</h4>
+                                <h4 class="font-serif font-bold text-sm sm:text-base text-land-dark mb-1">理解 Agent / MCP 概念</h4>
                                 <p class="text-xs text-land-muted leading-relaxed">理解 Agent、MCP 與 Context 的概念，學會為 AI 串接外部工具。</p>
                             </div>
                         </div>
 
-                        <div class="paper-card p-5 rounded-xl border border-land-gold/30 flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-land-dark text-land-gold flex items-center justify-center font-bold text-base flex-shrink-0">
+                        <div class="paper-card p-5 rounded-xl border border-land-gold/30 flex items-start gap-4 hover:border-land-gold transition-all">
+                            <div class="w-12 h-12 rounded-xl bg-land-dark text-land-gold flex items-center justify-center font-bold text-lg flex-shrink-0 shadow-sm art-border">
                                 <i class="fa-solid fa-shield-halved"></i>
                             </div>
                             <div>
-                                <h4 class="font-serif font-bold text-sm text-land-dark mb-1">批判思考與資安意識</h4>
+                                <h4 class="font-serif font-bold text-sm sm:text-base text-land-dark mb-1">批判思考與資安意識</h4>
                                 <p class="text-xs text-land-muted leading-relaxed">培養批判思考，能辨識 AI 的錯誤資訊並避開資安風險。</p>
                             </div>
                         </div>
@@ -514,72 +519,52 @@
 
     <!-- JavaScript 邏輯控制 -->
     <script>
-        // 專案資料庫 (採用結構化 DOM UI 解決中文字體亂碼及 SVG 破圖問題)
+        // 專案資料庫 (包含精美主題圖片連結，完全擺脫黑底與亂碼問題)
         const projectsData = [
             {
                 name: "台灣玩耍記憶資料庫",
                 author: "徐愷",
                 category: "site",
                 tagText: "展示網站",
+                image: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80",
                 shortDesc: "匯集與典藏臺灣在地娛樂、遊戲與童年玩耍記憶的數位資料庫，紀錄跨世代的休閒生活與文化軌跡。",
-                fullDesc: "「台灣玩耍記憶資料庫」是一個專注於整理與呈現臺灣童年遊戲、在地娛樂及休閒文化的數位平台。網站透過蒐集不同時代的玩耍記憶與童玩故事，將屬於臺灣人的共同生活體驗數位化典藏。不論是傳統童玩、街坊遊戲或時代記憶，皆在此被完整紀錄與呈現，邀請大眾一同探索臺灣豐富多元的娛樂文化發展脈絡，重溫跨世代的童年回憶。",
-                cardBg: "from-[#1A3029] to-[#27443B]",
-                cardIcon: "fa-database",
-                previewTitle: "台灣玩耍記憶資料庫",
-                previewSubtitle: "一座正在長大的集體記憶",
-                previewHero: "玩過的，就不會消失。"
+                fullDesc: "「台灣玩耍記憶資料庫」是一個專注於整理與呈現臺灣童年遊戲、在地娛樂及休閒文化的數位平台。網站透過蒐集不同時代的玩耍記憶與童玩故事，將屬於臺灣人的共同生活體驗數位化典藏。不論是傳統童玩、街坊遊戲或時代記憶，皆在此被完整紀錄與呈現，邀請大眾一同探索臺灣豐富多元的娛樂文化發展脈絡，重溫跨世代的童年回憶。"
             },
             {
                 name: "智生活：AI 學習進度規劃器",
                 author: "Pig",
                 category: "tool",
                 tagText: "生活工具",
+                image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=800&q=80",
                 shortDesc: "利用語言模型為國中生量身打造個人化學習日曆與時間管理小幫手，提升每日自主學習效率。",
-                fullDesc: "《智生活》是一款專為國中生設計的自主學習輔助工具。整合生成式 AI 與目標分解演算法，協助學生根據個人考程與學習進度自動調整每日讀書計畫，並具備即時專注計時與學習成就圖表回饋，幫助學生掌握自我學習節奏。",
-                cardBg: "from-[#27443B] to-[#1F3830]",
-                cardIcon: "fa-calendar-check",
-                previewTitle: "智生活 AI 規劃",
-                previewSubtitle: "高效自主學習助手",
-                previewHero: "把目標分解，讓進步看得見"
+                fullDesc: "《智生活》是一款專為國中生設計的自主學習輔助工具。整合生成式 AI 與目標分解演算法，協助學生根據個人考程與學習進度自動調整每日讀書計畫，並具備即時專注計時與學習成就圖表回饋，幫助學生掌握自我學習節奏。"
             },
             {
                 name: "選擇前，請深思",
                 author: "殷睿紳",
                 category: "game",
                 tagText: "趣味遊戲",
+                image: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=80",
                 shortDesc: "在學生與大人的雙重視角間切換，面對人際、課業與職場的微妙分歧，體驗微小選擇帶來的連鎖反應。",
-                fullDesc: "《選擇前，請深思》是一部呈現生活真實選擇題的互動文字作品。遊戲提供「學生」與「大人」雙視角，帶領玩家走進課業壓力、群組人際風波、分組合作困境與職場步調調整等日常場景。面對早晨鬧鐘的掙扎、朋友圈的尷尬話題或考題挫折，沒有絕對的標準答案。每一次選擇與停頓，都考驗著價值取捨，引導玩家在交錯的對話中，梳理出屬於自己的處事哲學與生活步調。",
-                cardBg: "from-[#3A2D23] to-[#2C2118]",
-                cardIcon: "fa-code-branch",
-                previewTitle: "玩家要如何選擇？",
-                previewSubtitle: "01 我的一天 (學生版)   |   02 我的一天 (大人版)",
-                previewHero: "抉擇連鎖反應"
+                fullDesc: "《選擇前，請深思》是一部呈現生活真實選擇題的互動文字作品。遊戲提供「學生」與「大人」雙視角，帶領玩家走進課業壓力、群組人際風波、分組合作困境與職場步調調整等日常場景。面對早晨鬧鐘的掙扎、朋友圈的尷尬話題或考題挫折，沒有絕對的標準答案。每一次選擇與停頓，都考驗著價值取捨，引導玩家在交錯的對話中，梳理出屬於自己的處事哲學與生活步調。"
             },
             {
                 name: "鐘樓迴響：復古風時空解謎",
                 author: "李昊恩、小蠍",
                 category: "game",
                 tagText: "趣味遊戲",
+                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
                 shortDesc: "結合像素美術與古典交響樂音效的雙人合作解謎遊戲。玩家操控掌控時間與空間的主角尋找解謎密碼。",
-                fullDesc: "《鐘樓迴響》是一副採用古典雙色像素風格打造的解謎遊戲。玩家將扮演掌控時間與空間鑰匙的探險家，在悠揚的古典交響樂與時鐘滴答聲中，解開層層機關，探索古老鐘樓背後被封印的秘密。",
-                cardBg: "from-[#2B2338] to-[#1D1726]",
-                cardIcon: "fa-clock",
-                previewTitle: "鐘樓迴響",
-                previewSubtitle: "復古雙色像素解謎",
-                previewHero: "穿梭時空，解開鐘樓鎖鑰"
+                fullDesc: "《鐘樓迴響》是一副採用古典雙色像素風格打造的解謎遊戲。玩家將扮演掌控時間與空間鑰匙的探險家，在悠揚的古典交響樂與時鐘滴答聲中，解開層層機關，探索古老鐘樓背後被封印的秘密。"
             },
             {
                 name: "光雕大冒險：聲控彈珠臺",
                 author: "李宥嫻",
                 category: "game",
                 tagText: "趣味遊戲",
+                image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80",
                 shortDesc: "運用麥克風音量與物理引擎相結合的趣味互動彈珠遊戲，玩家可以用聲音喊叫來給予彈珠額外推力！",
-                fullDesc: "《光雕大冒險》運用裝置麥克風音量偵測與物理引擎碰撞技術，創作出新型態的聲控彈珠遊戲。玩家不僅能利用按鈕發射，還能對著麥克風呐喊發聲，給予彈珠瞬間的加速與光雕特效推進！",
-                cardBg: "from-[#3B251E] to-[#2B1B15]",
-                cardIcon: "fa-gamepad",
-                previewTitle: "光雕大冒險",
-                previewSubtitle: "聲控物理彈珠互動",
-                previewHero: "用你的聲音，驅動物理光束"
+                fullDesc: "《光雕大冒險》運用裝置麥克風音量偵測與物理引擎碰撞技術，創作出新型態的聲控彈珠遊戲。玩家不僅能利用按鈕發射，還能對著麥克風吶喊發聲，給予彈珠瞬間的加速與光雕特效推進！"
             }
         ];
 
@@ -631,7 +616,7 @@
             });
         }
 
-        // 渲染作品卡片 UI（使用 HTML，不使用容易出現亂碼問號的 SVG 圖片）
+        // 渲染作品卡片 UI（包含完整圖片與防加載失敗備用機制）
         function renderProjects() {
             const container = document.getElementById('projects-grid');
             if (!container) return;
@@ -639,19 +624,9 @@
             container.innerHTML = projectsData.map((project, index) => `
                 <div class="project-card paper-card rounded-2xl overflow-hidden shadow-land hover:shadow-land-hover transition-all duration-300 art-border flex flex-col" data-category="${project.category}">
                     
-                    <!-- DOM 繪製的高質感作品封面區 -->
-                    <div class="relative h-48 bg-gradient-to-br ${project.cardBg} p-6 flex flex-col justify-between border-b border-land-gold/20">
-                        <div class="flex items-center justify-between">
-                            <div class="w-8 h-8 rounded-lg bg-land-gold/20 flex items-center justify-center text-land-gold text-sm border border-land-gold/40">
-                                <i class="fa-solid ${project.cardIcon}"></i>
-                            </div>
-                            <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-black/40 text-land-gold border border-land-gold/40">${project.tagText}</span>
-                        </div>
-
-                        <div>
-                            <span class="text-[10px] text-land-gold/80 font-serif block tracking-wider mb-0.5">${project.previewSubtitle}</span>
-                            <h4 class="font-serif font-bold text-xl text-white tracking-wide leading-tight">${project.previewHero}</h4>
-                        </div>
+                    <div class="relative h-48 bg-land-dark overflow-hidden border-b border-land-gold/20">
+                        <img src="${project.image}" alt="${project.name}" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/800x600/1A3029/B58E52?text=${encodeURIComponent(project.name)}'">
+                        <span class="absolute top-3 right-3 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-land-dark/90 text-land-gold border border-land-gold/40 shadow-sm">${project.tagText}</span>
                     </div>
 
                     <div class="p-6 flex-grow flex flex-col justify-between">
@@ -679,16 +654,11 @@
             document.getElementById('modal-author').textContent = `製作人：${project.author}`;
             document.getElementById('modal-desc').textContent = project.fullDesc;
 
-            // 渲染彈窗預覽圖
-            const previewContainer = document.getElementById('modal-preview-container');
-            previewContainer.className = `relative p-8 bg-gradient-to-br ${project.cardBg} rounded-2xl flex flex-col justify-center items-center text-center border border-land-gold/30 shadow-inner min-h-[180px]`;
-            previewContainer.innerHTML = `
-                <div class="w-12 h-12 rounded-full bg-land-gold/20 flex items-center justify-center text-land-gold text-xl mb-3 border border-land-gold/40">
-                    <i class="fa-solid ${project.cardIcon}"></i>
-                </div>
-                <span class="text-xs text-land-gold/90 font-serif mb-1">${project.previewSubtitle}</span>
-                <h3 class="font-serif font-bold text-2xl text-white tracking-wider">${project.previewHero}</h3>
-            `;
+            const modalImg = document.getElementById('modal-img');
+            modalImg.src = project.image;
+            modalImg.onerror = function() {
+                this.src = `https://placehold.co/800x600/1A3029/B58E52?text=${encodeURIComponent(project.name)}`;
+            };
 
             document.getElementById('project-modal').classList.remove('hidden');
         }
@@ -717,7 +687,7 @@
             }, 3000);
         }
 
-        // 立即執行卡片渲染
+        // 頁面載入時立即渲染
         renderProjects();
     </script>
 </body>
