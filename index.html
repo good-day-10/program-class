@@ -211,7 +211,7 @@
             <div class="relative py-16 sm:py-24">
                 <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-land-gold/15 border border-land-gold/30 text-land-gold text-xs font-mono font-medium mb-6">
-                        <i class="fa-solid fa-sparkles"></i> 數位工藝與創意程式展覽
+                        <i class="fa-solid fa-sparkles"></i> AI與程式設計
                     </div>
                     <h2 class="font-serif text-5xl sm:text-7xl font-black text-land-dark tracking-widest leading-tight mb-6">
                         <span class="bg-gradient-to-r from-land-dark via-land-gold to-land-slate bg-clip-text text-transparent inline-block transform hover:scale-105 transition-transform duration-500" style="font-family: 'Noto Serif TC', serif; font-weight: 900;">
@@ -225,7 +225,7 @@
 
                     <div class="flex flex-wrap justify-center gap-4">
                         <button onclick="switchPage('projects')" class="px-8 py-3.5 rounded-full bg-land-dark text-land-gold font-medium text-sm sm:text-base hover:bg-land-slate transition-all shadow-land-hover flex items-center gap-2 group border border-land-gold/30">
-                            <span>瀏覽作品展覽</span>
+                            <span>瀏覽我們的作品</span>
                             <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                         </button>
                         <button onclick="switchPage('course')" class="px-8 py-3.5 rounded-full bg-white/80 border border-land-gold/50 text-land-dark font-medium text-sm sm:text-base hover:bg-land-gold/10 transition-all flex items-center gap-2 shadow-sm">
@@ -245,14 +245,9 @@
                         <div class="w-12 h-0.5 bg-land-gold mx-auto mt-2"></div>
                     </div>
                     <div class="inline-flex items-center justify-center">
-                        <div class="paper-card rounded-2xl px-10 py-5 text-center art-border shadow-md flex items-center gap-4 hover:border-land-gold transition-all duration-300 transform hover:-translate-y-0.5">
-                            <div class="w-12 h-12 rounded-full bg-land-dark text-land-gold flex items-center justify-center font-bold text-lg shadow-sm">
-                                <i class="fa-solid fa-chalkboard-user"></i>
-                            </div>
-                            <div class="text-left">
-                                <span class="font-serif font-bold text-lg text-land-dark tracking-wide block">Bogay</span>
-                                <span class="text-xs text-land-gold font-medium block">指導老師</span>
-                            </div>
+                        <div class="paper-card rounded-2xl px-12 py-5 text-center art-border shadow-md flex flex-col items-center justify-center hover:border-land-gold transition-all duration-300 transform hover:-translate-y-0.5">
+                            <span class="font-serif font-bold text-lg text-land-dark tracking-wide block">Bogay</span>
+                            <span class="text-xs text-land-gold font-medium block mt-0.5">指導老師</span>
                         </div>
                     </div>
                 </div>
@@ -264,49 +259,8 @@
                         <div class="w-12 h-0.5 bg-land-gold mx-auto mt-2"></div>
                     </div>
 
-                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                        <div onclick="showMemberInfo('徐愷', '負責台灣玩耍記憶資料庫開發。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
-                            <div class="w-10 h-10 rounded-full bg-land-dark/10 group-hover:bg-land-dark text-land-gold flex items-center justify-center transition-colors">
-                                <i class="fa-solid fa-user-code text-sm"></i>
-                            </div>
-                            <span class="font-serif font-bold text-base text-land-dark tracking-wide">徐愷</span>
-                        </div>
-                        <div onclick="showMemberInfo('陳朝元', '負責將軍村解謎與水果農場遊戲開發。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
-                            <div class="w-10 h-10 rounded-full bg-land-dark/10 group-hover:bg-land-dark text-land-gold flex items-center justify-center transition-colors">
-                                <i class="fa-solid fa-user-code text-sm"></i>
-                            </div>
-                            <span class="font-serif font-bold text-base text-land-dark tracking-wide">陳朝元</span>
-                        </div>
-                        <div onclick="showMemberInfo('Pig', '負責每日任務規劃器與 Payas Days 個人行事曆開發。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
-                            <div class="w-10 h-10 rounded-full bg-land-dark/10 group-hover:bg-land-dark text-land-gold flex items-center justify-center transition-colors">
-                                <i class="fa-solid fa-user-code text-sm"></i>
-                            </div>
-                            <span class="font-serif font-bold text-base text-land-dark tracking-wide">Pig</span>
-                        </div>
-                        <div onclick="showMemberInfo('殷睿紳', '負責文字選擇遊戲開發。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
-                            <div class="w-10 h-10 rounded-full bg-land-dark/10 group-hover:bg-land-dark text-land-gold flex items-center justify-center transition-colors">
-                                <i class="fa-solid fa-user-code text-sm"></i>
-                            </div>
-                            <span class="font-serif font-bold text-base text-land-dark tracking-wide">殷睿紳</span>
-                        </div>
-                        <div onclick="showMemberInfo('李昊恩', '負責夜市彈珠台、聲音鋼琴室、字旋對決與夜間棒球開發。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
-                            <div class="w-10 h-10 rounded-full bg-land-dark/10 group-hover:bg-land-dark text-land-gold flex items-center justify-center transition-colors">
-                                <i class="fa-solid fa-user-code text-sm"></i>
-                            </div>
-                            <span class="font-serif font-bold text-base text-land-dark tracking-wide">李昊恩</span>
-                        </div>
-                        <div onclick="showMemberInfo('小蠍', '負責鷹眼翻譯、無障礙字數統計與奇幻遊樂園開發。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 group">
-                            <div class="w-10 h-10 rounded-full bg-land-dark/10 group-hover:bg-land-dark text-land-gold flex items-center justify-center transition-colors">
-                                <i class="fa-solid fa-user-code text-sm"></i>
-                            </div>
-                            <span class="font-serif font-bold text-base text-land-dark tracking-wide">小蠍</span>
-                        </div>
-                        <div onclick="showMemberInfo('李宥嫻', '負責像素街頭惡作劇、鋼琴聽音測驗與程式攤線上導覽。')" class="paper-card rounded-2xl p-4 text-center art-border shadow-sm flex flex-col items-center justify-center gap-2.5 hover:border-land-gold hover:bg-white cursor-pointer transition-all duration-300 col-span-2 sm:col-span-1 group">
-                            <div class="w-10 h-10 rounded-full bg-land-dark/10 group-hover:bg-land-dark text-land-gold flex items-center justify-center transition-colors">
-                                <i class="fa-solid fa-user-code text-sm"></i>
-                            </div>
-                            <span class="font-serif font-bold text-base text-land-dark tracking-wide">李宥嫻</span>
-                        </div>
+                    <div id="team-members-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        <!-- 由 JavaScript 動態渲染組員卡片與其所有作品標籤及名稱 -->
                     </div>
                 </div>
             </div>
@@ -1524,6 +1478,187 @@
                 </svg>`),
                 shortDesc: "結合月曆與相片記錄的視覺化日記工具，讓使用者在每天的日期格中放上代表照片，用影像串起生活點滴。",
                 fullDesc: "《影像日曆：每日照片記事本》是一款以照片為核心的視覺化日曆工具。不同於傳統純文字的行程表，本作品讓使用者為每一天上傳或記錄一張代表性的照片，並支援點擊放大檢視影像細節。透過月曆形式的版面排列，整個月的生活軌跡與精彩瞬間都能一目了然，為日常紀錄增添溫度與儀式感，適合用來製作個人的每日攝影集、生活手札或成長紀錄。"
+            },
+            // 21. 水果農場 - 陳朝元
+            {
+                name: "水果農場",
+                author: "陳朝元",
+                category: "game",
+                tagText: "趣味遊戲",
+                url: "https://shui-guo-pu-pai-ji-yi-you-xi--bibby0510.replit.app",
+                image: "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+                    <!-- 暖米色背景 -->
+                    <rect width="800" height="500" fill="#F5F1E6"/>
+                    
+                    <!-- 頂部導覽列 -->
+                    <circle cx="52" cy="28" r="13" fill="#E86A54"/>
+                    <path d="M 52 21 C 48 21 46 24 46 28 C 46 32 49 34 52 34 C 55 34 58 32 58 28 C 58 24 56 21 52 21 Z" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+                    <text x="72" y="27" fill="#233B30" font-family="serif" font-size="11" font-weight="bold">果然有一手</text>
+                    <text x="72" y="37" fill="#8C897E" font-family="sans-serif" font-size="6.5" letter-spacing="1.2">FRUIT TRIPLE MEMORY</text>
+
+                    <rect x="665" y="16" width="90" height="24" rx="12" fill="#FAF8F2" stroke="#DCD7C9" stroke-width="1"/>
+                    <circle cx="678" cy="28" r="3.5" fill="#E86A54"/>
+                    <text x="713" y="31.5" fill="#233B30" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="middle">目前輪到 玩家 1</text>
+
+                    <line x1="40" y1="54" x2="760" y2="54" stroke="#E2DDD0" stroke-width="1"/>
+
+                    <!-- 標題區 -->
+                    <circle cx="48" cy="82" r="3.5" fill="#E86A54"/>
+                    <text x="56" y="85" fill="#6E7068" font-family="sans-serif" font-size="8.5">家庭桌遊 · 2–4 位玩家</text>
+                    <text x="44" y="128" fill="#1F3B2E" font-family="serif" font-size="38" font-weight="900" letter-spacing="2">翻翻果園<tspan fill="#E86A54">.</tspan></text>
+                    <text x="45" y="150" fill="#7D7B72" font-family="sans-serif" font-size="10">找到三張一樣的水果，就能把它們帶回家。</text>
+
+                    <!-- 右上角柳橙軌道裝飾 -->
+                    <g transform="translate(665, 110)">
+                        <ellipse cx="0" cy="0" rx="54" ry="24" fill="none" stroke="#C5C9BE" stroke-width="1" transform="rotate(-12)"/>
+                        <ellipse cx="0" cy="0" rx="50" ry="22" fill="none" stroke="#E2B2A8" stroke-width="1" transform="rotate(18)"/>
+                        <circle cx="0" cy="0" r="18" fill="#F59E2D"/>
+                        <circle cx="0" cy="0" r="14.5" fill="#FBB040"/>
+                        <line x1="0" y1="-14" x2="0" y2="14" stroke="#F59E2D" stroke-width="1.2"/>
+                        <line x1="-14" y1="0" x2="14" y2="0" stroke="#F59E2D" stroke-width="1.2"/>
+                        <line x1="-10" y1="-10" x2="10" y2="10" stroke="#F59E2D" stroke-width="1.2"/>
+                        <line x1="10" y1="-10" x2="-10" y2="10" stroke="#F59E2D" stroke-width="1.2"/>
+                        <ellipse cx="4" cy="-20" rx="5" ry="2.5" fill="#5D8A66" transform="rotate(-25 4 -20)"/>
+                        <ellipse cx="-42" cy="-14" rx="5" ry="2.5" fill="#5D8A66" transform="rotate(-15 -42 -14)"/>
+                        <ellipse cx="38" cy="18" rx="5" ry="2.5" fill="#5D8A66" transform="rotate(15 38 18)"/>
+                    </g>
+
+                    <!-- 左側主遊戲面板 -->
+                    <rect x="44" y="176" width="528" height="324" rx="16" fill="#FAF8F3" stroke="#E5E0D3" stroke-width="1.2"/>
+                    <circle cx="64" cy="200" r="4" fill="#E86A54"/>
+                    <text x="74" y="204" fill="#1F3B2E" font-family="sans-serif" font-size="11.5" font-weight="bold">玩家 1 的回合</text>
+                    <text x="552" y="204" fill="#7D7B72" font-family="sans-serif" font-size="9" text-anchor="end">第 1 回合  /  0 / 8 果組</text>
+
+                    <!-- 提示框 -->
+                    <rect x="60" y="220" width="496" height="32" rx="8" fill="#EFF2EC" stroke="#DCE2D7" stroke-width="1"/>
+                    <circle cx="76" cy="236" r="6" fill="none" stroke="#687D70" stroke-width="1.2"/>
+                    <text x="76" y="239.5" fill="#687D70" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="middle">?</text>
+                    <text x="88" y="239.5" fill="#3B4D43" font-family="sans-serif" font-size="9.5">再找一張一樣的，才可以翻第三張</text>
+                    <text x="544" y="239.5" fill="#687D70" font-family="monospace" font-size="9" text-anchor="end">1 / 3</text>
+
+                    <!-- 第一排 6 張卡牌 (01-05 背面, 第6張翻開為香蕉) -->
+                    <!-- 卡牌 01 -->
+                    <g transform="translate(60, 266)">
+                        <rect width="76" height="114" rx="8" fill="#DCE5D8" stroke="#C5D1C0" stroke-width="1"/>
+                        <ellipse cx="38" cy="54" rx="28" ry="44" fill="none" stroke="#B7C6B1" stroke-width="1" stroke-dasharray="3 2"/>
+                        <circle cx="38" cy="54" r="14" fill="#EFECE0"/>
+                        <path d="M 38 48 C 35 48 33 50 33 54 C 33 58 35.5 60 38 60 C 40.5 60 43 58 43 54 C 43 50 41 48 38 48 Z" fill="none" stroke="#4D6B5A" stroke-width="1.2"/>
+                        <text x="38" y="107" fill="#5D7366" font-family="monospace" font-size="7" text-anchor="middle">01</text>
+                    </g>
+                    <!-- 卡牌 02 -->
+                    <g transform="translate(144, 266)">
+                        <rect width="76" height="114" rx="8" fill="#DCE5D8" stroke="#C5D1C0" stroke-width="1"/>
+                        <ellipse cx="38" cy="54" rx="28" ry="44" fill="none" stroke="#B7C6B1" stroke-width="1" stroke-dasharray="3 2"/>
+                        <circle cx="38" cy="54" r="14" fill="#EFECE0"/>
+                        <path d="M 38 48 C 35 48 33 50 33 54 C 33 58 35.5 60 38 60 C 40.5 60 43 58 43 54 C 43 50 41 48 38 48 Z" fill="none" stroke="#4D6B5A" stroke-width="1.2"/>
+                        <text x="38" y="107" fill="#5D7366" font-family="monospace" font-size="7" text-anchor="middle">02</text>
+                    </g>
+                    <!-- 卡牌 03 -->
+                    <g transform="translate(228, 266)">
+                        <rect width="76" height="114" rx="8" fill="#DCE5D8" stroke="#C5D1C0" stroke-width="1"/>
+                        <ellipse cx="38" cy="54" rx="28" ry="44" fill="none" stroke="#B7C6B1" stroke-width="1" stroke-dasharray="3 2"/>
+                        <circle cx="38" cy="54" r="14" fill="#EFECE0"/>
+                        <path d="M 38 48 C 35 48 33 50 33 54 C 33 58 35.5 60 38 60 C 40.5 60 43 58 43 54 C 43 50 41 48 38 48 Z" fill="none" stroke="#4D6B5A" stroke-width="1.2"/>
+                        <text x="38" y="107" fill="#5D7366" font-family="monospace" font-size="7" text-anchor="middle">03</text>
+                    </g>
+                    <!-- 卡牌 04 -->
+                    <g transform="translate(312, 266)">
+                        <rect width="76" height="114" rx="8" fill="#DCE5D8" stroke="#C5D1C0" stroke-width="1"/>
+                        <ellipse cx="38" cy="54" rx="28" ry="44" fill="none" stroke="#B7C6B1" stroke-width="1" stroke-dasharray="3 2"/>
+                        <circle cx="38" cy="54" r="14" fill="#EFECE0"/>
+                        <path d="M 38 48 C 35 48 33 50 33 54 C 33 58 35.5 60 38 60 C 40.5 60 43 58 43 54 C 43 50 41 48 38 48 Z" fill="none" stroke="#4D6B5A" stroke-width="1.2"/>
+                        <text x="38" y="107" fill="#5D7366" font-family="monospace" font-size="7" text-anchor="middle">04</text>
+                    </g>
+                    <!-- 卡牌 05 -->
+                    <g transform="translate(396, 266)">
+                        <rect width="76" height="114" rx="8" fill="#DCE5D8" stroke="#C5D1C0" stroke-width="1"/>
+                        <ellipse cx="38" cy="54" rx="28" ry="44" fill="none" stroke="#B7C6B1" stroke-width="1" stroke-dasharray="3 2"/>
+                        <circle cx="38" cy="54" r="14" fill="#EFECE0"/>
+                        <path d="M 38 48 C 35 48 33 50 33 54 C 33 58 35.5 60 38 60 C 40.5 60 43 58 43 54 C 43 50 41 48 38 48 Z" fill="none" stroke="#4D6B5A" stroke-width="1.2"/>
+                        <text x="38" y="107" fill="#5D7366" font-family="monospace" font-size="7" text-anchor="middle">05</text>
+                    </g>
+                    <!-- 第 6 張翻開卡牌：香蕉 -->
+                    <g transform="translate(480, 266)">
+                        <rect width="76" height="114" rx="8" fill="#FCF9F0" stroke="#E5D3A8" stroke-width="1.5"/>
+                        <path d="M 22 42 C 20 62 36 76 58 64 C 60 62 60 58 56 57 C 42 63 29 53 28 40 C 28 38 23 38 22 42 Z" fill="#F2CD49" stroke="#C99E26" stroke-width="1.2"/>
+                        <path d="M 22 40 L 25 36 L 28 39" fill="#6E582C"/>
+                        <text x="38" y="96" fill="#4A4840" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle">香蕉</text>
+                    </g>
+
+                    <!-- 第二排卡牌露出一半 -->
+                    <g transform="translate(60, 392)">
+                        <rect width="76" height="108" rx="8" fill="#DCE5D8" stroke="#C5D1C0" stroke-width="1"/>
+                        <ellipse cx="38" cy="54" rx="28" ry="44" fill="none" stroke="#B7C6B1" stroke-width="1" stroke-dasharray="3 2"/>
+                        <circle cx="38" cy="54" r="14" fill="#EFECE0"/>
+                    </g>
+                    <g transform="translate(144, 392)">
+                        <rect width="76" height="108" rx="8" fill="#DCE5D8" stroke="#C5D1C0" stroke-width="1"/>
+                        <ellipse cx="38" cy="54" rx="28" ry="44" fill="none" stroke="#B7C6B1" stroke-width="1" stroke-dasharray="3 2"/>
+                        <circle cx="38" cy="54" r="14" fill="#EFECE0"/>
+                    </g>
+                    <g transform="translate(228, 392)">
+                        <rect width="76" height="108" rx="8" fill="#DCE5D8" stroke="#C5D1C0" stroke-width="1"/>
+                        <ellipse cx="38" cy="54" rx="28" ry="44" fill="none" stroke="#B7C6B1" stroke-width="1" stroke-dasharray="3 2"/>
+                        <circle cx="38" cy="54" r="14" fill="#EFECE0"/>
+                    </g>
+                    <g transform="translate(312, 392)">
+                        <rect width="76" height="108" rx="8" fill="#DCE5D8" stroke="#C5D1C0" stroke-width="1"/>
+                        <ellipse cx="38" cy="54" rx="28" ry="44" fill="none" stroke="#B7C6B1" stroke-width="1" stroke-dasharray="3 2"/>
+                        <circle cx="38" cy="54" r="14" fill="#EFECE0"/>
+                    </g>
+                    <g transform="translate(396, 392)">
+                        <rect width="76" height="108" rx="8" fill="#DCE5D8" stroke="#C5D1C0" stroke-width="1"/>
+                        <ellipse cx="38" cy="54" rx="28" ry="44" fill="none" stroke="#B7C6B1" stroke-width="1" stroke-dasharray="3 2"/>
+                        <circle cx="38" cy="54" r="14" fill="#EFECE0"/>
+                    </g>
+                    <g transform="translate(480, 392)">
+                        <rect width="76" height="108" rx="8" fill="#DCE5D8" stroke="#C5D1C0" stroke-width="1"/>
+                        <ellipse cx="38" cy="54" rx="28" ry="44" fill="none" stroke="#B7C6B1" stroke-width="1" stroke-dasharray="3 2"/>
+                        <circle cx="38" cy="54" r="14" fill="#EFECE0"/>
+                    </g>
+
+                    <!-- 右側邊欄：本桌玩家 -->
+                    <rect x="588" y="176" width="168" height="162" rx="14" fill="#FAF8F3" stroke="#E5E0D3" stroke-width="1.2"/>
+                    <text x="602" y="198" fill="#5C6B62" font-family="sans-serif" font-size="9.5" font-weight="bold">👥 本桌玩家</text>
+
+                    <!-- 玩家 1 (目前回合) -->
+                    <rect x="600" y="210" width="144" height="42" rx="10" fill="#E3ECE5" stroke="#5A7D6B" stroke-width="1.2"/>
+                    <circle cx="618" cy="231" r="11" fill="#466B58"/>
+                    <text x="618" y="235" fill="#FFFFFF" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">1</text>
+                    <text x="636" y="228" fill="#1F3B2E" font-family="sans-serif" font-size="9.5" font-weight="bold">玩家 1</text>
+                    <rect x="668" y="219" width="22" height="12" rx="3" fill="#CEDDD2"/>
+                    <text x="679" y="227.5" fill="#3B5C4B" font-family="sans-serif" font-size="6.5" text-anchor="middle">現在</text>
+                    <text x="636" y="241" fill="#687D70" font-family="sans-serif" font-size="7.5">收集果組</text>
+                    <rect x="716" y="220" width="20" height="22" rx="5" fill="#D5E3D8"/>
+                    <text x="726" y="235" fill="#1F3B2E" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="middle">0</text>
+
+                    <!-- 玩家 2 -->
+                    <rect x="600" y="260" width="144" height="42" rx="10" fill="#FCFBF7" stroke="#EAE5D9" stroke-width="1"/>
+                    <circle cx="618" cy="281" r="11" fill="#E86A54"/>
+                    <text x="618" y="285" fill="#FFFFFF" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">2</text>
+                    <text x="636" y="278" fill="#5C5A52" font-family="sans-serif" font-size="9.5" font-weight="bold">玩家 2</text>
+                    <text x="636" y="291" fill="#9A978E" font-family="sans-serif" font-size="7.5">收集果組</text>
+                    <rect x="716" y="270" width="20" height="22" rx="5" fill="#FBE8E4"/>
+                    <text x="726" y="285" fill="#D65A45" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="middle">0</text>
+
+                    <text x="602" y="324" fill="#8C897E" font-family="sans-serif" font-size="8">0 組水果已找到</text>
+                    <circle cx="730" cy="321" r="1.8" fill="#E86A54"/>
+                    <circle cx="736" cy="321" r="1.8" fill="#E86A54"/>
+                    <circle cx="742" cy="321" r="1.8" fill="#E86A54"/>
+
+                    <!-- 右側邊欄：遊戲設定 -->
+                    <rect x="588" y="352" width="168" height="148" rx="14" fill="#FAF8F3" stroke="#E5E0D3" stroke-width="1.2"/>
+                    <text x="602" y="376" fill="#233B30" font-family="sans-serif" font-size="10" font-weight="bold">遊戲設定</text>
+                    <text x="602" y="396" fill="#7D7B72" font-family="sans-serif" font-size="8.5">玩家人數</text>
+
+                    <rect x="602" y="406" width="140" height="28" rx="7" fill="#EFECE2"/>
+                    <rect x="604" y="408" width="44" height="24" rx="5" fill="#2A4B3C"/>
+                    <text x="626" y="424" fill="#FFFFFF" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle">2</text>
+                    <text x="672" y="424" fill="#5C5A52" font-family="sans-serif" font-size="9.5" text-anchor="middle">3</text>
+                    <text x="718" y="424" fill="#5C5A52" font-family="sans-serif" font-size="9.5" text-anchor="middle">4</text>
+                </svg>`),
+                shortDesc: "以繽紛水果為主題的翻牌配對記憶遊戲，考驗專注力與瞬間記憶，在輕鬆可愛的農場氛圍中挑戰破關。",
+                fullDesc: "《水果農場》是一款充滿清新果園氣息的翻牌記憶配對遊戲。遊戲介面色彩繽紛可愛，玩家需要在蓋著的卡牌中逐一翻開，記住每張卡片背後的香甜水果圖案與位置，並成功找出成雙成對的相同水果。遊戲不僅考驗玩家的專注力、觀察力與短期記憶，也提供了簡單直覺的操作體驗，非常適合全年齡層在閒暇時刻放鬆身心、活絡大腦。"
             }
         ];
 
@@ -1685,7 +1820,49 @@
             }, 3000);
         }
 
+        // 動態渲染專案組員與其所有作品標籤及名稱
+        function renderTeamMembers() {
+            const container = document.getElementById('team-members-grid');
+            if (!container) return;
+
+            const memberNames = ['徐愷', '陳朝元', 'Pig', '殷睿紳', '李昊恩', '小蠍', '李宥嫻'];
+            container.innerHTML = '';
+
+            memberNames.forEach(name => {
+                const memberProjects = projectsData
+                    .map((p, idx) => ({ ...p, originalIndex: idx }))
+                    .filter(p => p.author === name);
+
+                const projectsListHtml = memberProjects.map(p => `
+                    <div onclick="openProjectModal(${p.originalIndex})" class="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-white/75 hover:bg-white border border-land-gold/25 hover:border-land-gold cursor-pointer transition-all group/item">
+                        <span class="text-xs sm:text-sm font-medium text-land-dark group-hover/item:text-land-gold transition-colors text-left leading-snug">
+                            ${p.name}
+                        </span>
+                        <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-land-dark text-land-gold border border-land-gold/30 flex-shrink-0">
+                            ${p.tagText}
+                        </span>
+                    </div>
+                `).join('');
+
+                const card = document.createElement('div');
+                card.className = "paper-card rounded-2xl p-5 art-border shadow-sm hover:border-land-gold transition-all duration-300 flex flex-col justify-between";
+                card.innerHTML = `
+                    <div>
+                        <div class="pb-3 mb-3.5 border-b border-land-gold/20 flex items-center justify-between">
+                            <h4 class="font-serif font-bold text-lg text-land-dark tracking-wide">${name}</h4>
+                            <span class="text-[11px] font-mono text-land-gold font-semibold">${memberProjects.length} 件作品</span>
+                        </div>
+                        <div class="space-y-2">
+                            ${projectsListHtml}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
+            renderTeamMembers();
             renderProjects('all');
         });
     </script>
