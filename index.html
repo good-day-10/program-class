@@ -180,7 +180,7 @@
                 </button>
             </nav>
 
-            <div class="md:hidden">
+            <div class="md:hidden flex items-center space-x-2">
                 <button onclick="toggleMobileMenu()" class="p-2.5 rounded-lg bg-land-card border border-land-gold/30 text-land-dark hover:bg-land-gold/10 transition-colors">
                     <i class="fa-solid fa-bars text-lg"></i>
                 </button>
@@ -324,7 +324,12 @@
                 </div>
 
                 <!-- 彈窗內新增體驗按鈕 -->
-                <div class="mt-6 pt-4 border-t border-land-gold/20 flex justify-end">
+                <div class="mt-6 pt-4 border-t border-land-gold/20 flex flex-wrap items-center justify-between gap-3">
+                    <button id="modal-like-btn" onclick="toggleModalLike()" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium border transition-all flex items-center gap-2 shadow-sm">
+                        <i id="modal-like-icon" class="fa-regular fa-heart"></i>
+                        <span id="modal-like-text">按讚支持</span>
+                        <span id="modal-like-count" class="font-mono font-bold px-2 py-0.5 rounded-full bg-black/5">0</span>
+                    </button>
                     <a id="modal-link" href="#" target="_blank" class="px-6 py-2.5 rounded-full bg-land-gold text-white font-medium text-xs sm:text-sm hover:bg-land-goldhover transition-all shadow-md flex items-center gap-2">
                         <span>前往體驗作品</span>
                         <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
@@ -1739,10 +1744,13 @@
                     </div>
 
                     <div class="px-6 pb-6 pt-2 flex items-center justify-between gap-2 border-t border-land-gold/10">
-                        <button onclick="openProjectModal(${originalIndex})" class="px-3.5 py-1.5 rounded-full bg-land-card hover:bg-land-gold/20 text-land-dark text-xs font-medium border border-land-gold/30 transition-all flex items-center gap-1.5">
-                            <i class="fa-solid fa-circle-info text-land-gold"></i>
-                            <span>詳細簡介</span>
-                        </button>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openProjectModal(${originalIndex})" class="px-3.5 py-1.5 rounded-full bg-land-card hover:bg-land-gold/20 text-land-dark text-xs font-medium border border-land-gold/30 transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-info text-land-gold"></i>
+                                <span>詳細簡介</span>
+                            </button>
+                            ${renderLikeButtonHtml(originalIndex)}
+                        </div>
                         <a href="${project.url}" target="_blank" class="px-4 py-1.5 rounded-full bg-land-gold hover:bg-land-goldhover text-white text-xs font-medium transition-all flex items-center gap-1.5 shadow-sm">
                             <span>體驗網站</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
@@ -1753,8 +1761,158 @@
             });
         }
 
+        // ====== 單次瀏覽階段按讚系統（無需登入，關閉頁面重置） ======
+        const STORAGE_KEY_TOTAL_LIKES = 'coding_expo_total_likes_v2';
+        const SESSION_KEY_LIKED_ITEMS = 'coding_expo_session_liked';
+        let currentCategoryFilter = 'all';
+        let currentModalProjectIndex = null;
+
+        // 取得所有作品累計按讚數結構：{ [projectName]: number }
+        function getTotalLikesData() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY_TOTAL_LIKES);
+                return raw ? JSON.parse(raw) : {};
+            } catch (e) {
+                return {};
+            }
+        }
+
+        // 儲存所有作品累計按讚數
+        function saveTotalLikesData(data) {
+            localStorage.setItem(STORAGE_KEY_TOTAL_LIKES, JSON.stringify(data));
+        }
+
+        // 取得本次瀏覽階段已按讚的作品清單（關閉分頁即自動清除）
+        function getSessionLikedList() {
+            try {
+                const raw = sessionStorage.getItem(SESSION_KEY_LIKED_ITEMS);
+                return raw ? JSON.parse(raw) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        // 儲存本次瀏覽階段已按讚的作品清單
+        function saveSessionLikedList(list) {
+            sessionStorage.setItem(SESSION_KEY_LIKED_ITEMS, JSON.stringify(list));
+        }
+
+        // 取得指定作品的按讚數與本次瀏覽是否已按讚
+        function getProjectLikeInfo(projectIndex) {
+            const project = projectsData[projectIndex];
+            const totalData = getTotalLikesData();
+            const count = typeof totalData[project.name] === 'number' ? totalData[project.name] : 0;
+            const sessionLiked = getSessionLikedList();
+            const hasLiked = sessionLiked.includes(project.name);
+            return {
+                count,
+                hasLiked
+            };
+        }
+
+        // 產生作品卡片上的按讚按鈕 HTML
+        function renderLikeButtonHtml(originalIndex) {
+            const { count, hasLiked } = getProjectLikeInfo(originalIndex);
+            const btnStyle = hasLiked
+                ? 'bg-rose-500/15 hover:bg-rose-500/25 border-rose-500/50 text-rose-600 font-semibold'
+                : 'bg-white/80 hover:bg-rose-50 border-land-gold/30 hover:border-rose-300 text-land-dark';
+            const iconClass = hasLiked ? 'fa-solid fa-heart text-rose-500' : 'fa-regular fa-heart text-rose-500';
+            const titleText = hasLiked ? '點擊取消按讚' : '為此作品按讚';
+
+            return `
+                <button onclick="toggleLike(${originalIndex})" title="${titleText}" class="px-3 py-1.5 rounded-full text-xs border transition-all flex items-center gap-1.5 shadow-sm ${btnStyle}">
+                    <i class="${iconClass}"></i>
+                    <span class="font-mono">${count}</span>
+                </button>
+            `;
+        }
+
+        // 執行按讚與取消按讚切換（單次瀏覽階段內可自由切換自己按過的讚）
+        function toggleLike(originalIndex) {
+            const project = projectsData[originalIndex];
+            const sessionLiked = getSessionLikedList();
+            const totalData = getTotalLikesData();
+            const currentCount = typeof totalData[project.name] === 'number' ? totalData[project.name] : 0;
+            const likedIndex = sessionLiked.indexOf(project.name);
+
+            if (likedIndex !== -1) {
+                // 已按過讚 -> 取消按讚
+                sessionLiked.splice(likedIndex, 1);
+                saveSessionLikedList(sessionLiked);
+
+                totalData[project.name] = Math.max(0, currentCount - 1);
+                saveTotalLikesData(totalData);
+
+                showToastMessage(`已取消對《${project.name}》的讚`, false);
+            } else {
+                // 尚未按讚 -> 新增按讚
+                sessionLiked.push(project.name);
+                saveSessionLikedList(sessionLiked);
+
+                totalData[project.name] = currentCount + 1;
+                saveTotalLikesData(totalData);
+
+                showToastMessage(`已為《${project.name}》按讚支持！`, true);
+            }
+
+            renderProjects(currentCategoryFilter);
+            if (currentModalProjectIndex === originalIndex) {
+                updateModalLikeButton(originalIndex);
+            }
+        }
+
+        function toggleModalLike() {
+            if (currentModalProjectIndex !== null) {
+                toggleLike(currentModalProjectIndex);
+            }
+        }
+
+        function updateModalLikeButton(index) {
+            const { count, hasLiked } = getProjectLikeInfo(index);
+            const btn = document.getElementById('modal-like-btn');
+            const icon = document.getElementById('modal-like-icon');
+            const text = document.getElementById('modal-like-text');
+            const countEl = document.getElementById('modal-like-count');
+
+            if (!btn) return;
+            countEl.innerText = count;
+
+            if (hasLiked) {
+                btn.className = "px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold border border-rose-500/50 bg-rose-500/15 hover:bg-rose-500/25 text-rose-600 transition-all flex items-center gap-2 shadow-sm";
+                icon.className = "fa-solid fa-heart text-rose-500";
+                text.innerText = "已按讚（點擊取消）";
+            } else {
+                btn.className = "px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium border border-land-gold/40 bg-white hover:bg-rose-50 text-land-dark transition-all flex items-center gap-2 shadow-sm";
+                icon.className = "fa-regular fa-heart text-rose-500";
+                text.innerText = "按讚支持";
+            }
+        }
+
+        function showToastMessage(msg, isLiked = true) {
+            const existingToast = document.getElementById('member-toast');
+            if (existingToast) existingToast.remove();
+
+            const iconHtml = isLiked
+                ? '<i class="fa-solid fa-heart text-rose-500"></i>'
+                : '<i class="fa-regular fa-heart text-land-muted"></i>';
+
+            const toast = document.createElement('div');
+            toast.id = 'member-toast';
+            toast.className = "fixed bottom-6 right-6 z-50 paper-card border border-land-gold px-5 py-3 rounded-2xl shadow-land-hover flex items-center gap-2.5 text-xs sm:text-sm font-medium text-land-dark";
+            toast.innerHTML = `
+                ${iconHtml}
+                <span>${msg}</span>
+            `;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                if (toast) toast.remove();
+            }, 2500);
+        }
+
         // 打開作品詳情 Modal
         function openProjectModal(index) {
+            currentModalProjectIndex = index;
             const p = projectsData[index];
             document.getElementById('modal-tag').innerText = p.tagText;
             document.getElementById('modal-title').innerText = p.name;
@@ -1762,6 +1920,7 @@
             document.getElementById('modal-img').src = p.image;
             document.getElementById('modal-desc').innerText = p.fullDesc;
             document.getElementById('modal-link').href = p.url;
+            updateModalLikeButton(index);
 
             const modal = document.getElementById('project-modal');
             modal.classList.remove('hidden');
@@ -1777,6 +1936,7 @@
 
         // 關閉作品詳情 Modal
         function closeProjectModal() {
+            currentModalProjectIndex = null;
             const modal = document.getElementById('project-modal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
@@ -1784,6 +1944,7 @@
 
         // 分類篩選邏輯
         function filterProjects(category) {
+            currentCategoryFilter = category;
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => {
                 btn.classList.remove('active', 'bg-land-dark', 'text-land-gold');
